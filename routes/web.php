@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMail\SendSingleMail;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('massmailer.index');
 });
 
 Route::get('/mail/sendsinglemail', function () {
