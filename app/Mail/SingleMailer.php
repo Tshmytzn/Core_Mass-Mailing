@@ -38,7 +38,7 @@ class SingleMailer extends Mailable
     {
         return new Envelope(
             subject: $this->subject,
-            from: $this->fromEmail ? $this->fromEmail : 'default@example.com', // Use dynamic or default "from" email.
+            from: $this->fromEmail ? $this->fromEmail : 'info@coresupporthub.com', // Use dynamic or default "from" email.
         );
     }
 
