@@ -12,12 +12,12 @@ class SendSingleMail extends Controller
     public function sendEmail(request $request)
     {
         $details = [
-            'title' => $request->title,
             'message' => $request->body
         ];
-        $subject = 'test';
-        $fromEmail = 'jp@coresupporthub.com';
-        Mail::to($request->mail)->send(new SingleMailer($details,$subject, $fromEmail));
+
+        $subject = $request->subject;
+        $fromEmail = $request->mailfrom;
+        Mail::to($request->mailto)->send(new SingleMailer($details,$subject, $fromEmail));
 
         return redirect()->back();
     }
