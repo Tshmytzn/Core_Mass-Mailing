@@ -69,10 +69,10 @@ class AccountSeeder extends Seeder
             $model = new AccountModel();
             $model->acc_username = $acc[0];
             $model->acc_company_id = $acc[1];
-            $model->acc_email = $acc[3]; 
-            $model->acc_password = $acc[4];
-            $model->acc_type = $acc[5];
-            $model->acc_pic = $acc[6];
+            $model->acc_email = $acc[2]; 
+            $model->acc_password = $acc[3];
+            $model->acc_type = $acc[4];
+            $model->acc_pic = $acc[5];
             $model->save();
         }
     }
