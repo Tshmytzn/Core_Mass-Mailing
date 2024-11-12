@@ -65,7 +65,41 @@
             }
         });
     }
+
+    $('#logButton').click(function() {
+            var content = $('#summernote').summernote('code');
+            
+            const formData = new FormData();
+            formData.append('_token', '{{ csrf_token() }}');
+            formData.append('content', content);
+
+            document.getElementById('loadingPage').style.display='flex';
+            $.ajax({
+                url: `{{route('AddSignature')}}`, // Replace with your server endpoint
+                type: 'POST',
+                data: formData,
+                processData: false, // Required for FormData
+                contentType: false, // Required for FormData
+                success: function(response) {
+                    document.getElementById('loadingPage').style.display='none';
+                    console.log(response)
+                },
+                error: function(xhr, status, error) {
+                    console.error('Form submission failed:', error);
+                }
+            });
+
+    });
+
+
     $(document).ready(function() {    
         getUserData();
+        $('#summernote').summernote({
+            height: 300, // Set the height (in pixels) which will influence the number of rows visible
+            minHeight: null, // Optionally specify the minimum height
+            maxHeight: null, // Optionally specify the maximum height
+            width: '100%', // Set the width to 100% (you can also set specific pixel values like '500px')
+        });
+
     });
 </script>

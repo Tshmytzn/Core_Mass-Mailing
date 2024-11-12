@@ -14,6 +14,7 @@ class SingleMailer extends Mailable
     public $subject;
     public $fromEmail;
     public $fromName;
+    public $signature;
 
     /**
      * Create a new message instance.
@@ -22,13 +23,15 @@ class SingleMailer extends Mailable
      * @param string $subject
      * @param string|null $fromEmail
      * @param string|null $fromName
+     * @param string|null $signature
      */
-    public function __construct($details, $subject, $fromEmail = null, $fromName = 'Default Sender Name')
+    public function __construct($details, $subject, $fromEmail = null, $fromName = 'Default Sender Name', $signature)
     {
         $this->details = $details;
         $this->subject = $subject;
         $this->fromEmail = $fromEmail ?? 'info@coresupporthub.com';
         $this->fromName = $fromName;
+        $this->signature = $signature;
     }
 
     /**
@@ -39,6 +42,9 @@ class SingleMailer extends Mailable
         return $this->from($this->fromEmail, $this->fromName)
             ->subject($this->subject)
             ->view('welcome') // Specify the view
-            ->with(['details' => $this->details]); // Pass data to the view
+            ->with([
+                'details' => $this->details, // Access details properly
+                'signature' => $this->signature // Access signature properly
+            ]);
     }
 }

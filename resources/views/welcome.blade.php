@@ -21,6 +21,9 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <p>{!! $details['message'] !!}</p>
-    
+
+        <div>
+        {!! $signature !!} <!-- This will render the signature HTML -->
+        </div>
     </body>
 </html>

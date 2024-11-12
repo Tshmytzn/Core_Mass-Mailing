@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMail\SendSingleMail;
 use App\Http\Controllers\AccountManagement\loginController;
 use App\Http\Controllers\AccountManagement\AccountController;
+use App\Http\Controllers\SignatureManagement\SignatureController;
 use App\Http\Middleware\AccountAuthMiddleware;
 
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
@@ -46,6 +47,9 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/updateuserdata', [AccountController::class, 'UpdateAccount'])->name('UpdateAccount');
     Route::post('/UpdateAccountProfile', [AccountController::class, 'UpdateAccountProfile'])->name('UpdateAccountProfile');
     Route::get('/GetAccount', [AccountController::class, 'GetAccount'])->name('GetAccount');
+
+    // signature Data
+    Route::post('/AddSignature', [SignatureController::class, 'AddSignature'])->name('AddSignature');
 });
 
 Route::get('/login', function () {

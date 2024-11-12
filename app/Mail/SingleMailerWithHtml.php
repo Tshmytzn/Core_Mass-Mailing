@@ -19,12 +19,14 @@ class SingleMailerWithHtml extends Mailable
     public $subject;
     public $fromEmail;
     public $fromName;
-    public function __construct($subject, $fromEmail = null, $fromName = 'Default Sender Name')
+    public $signature;
+    public function __construct($subject, $fromEmail = null, $fromName = 'Default Sender Name',$signature)
     {
         
         $this->subject = $subject;
         $this->fromEmail = $fromEmail ?? 'info@coresupporthub.com';
         $this->fromName = $fromName;
+        $this->signature = $signature;
     }
 
     /**
@@ -34,6 +36,9 @@ class SingleMailerWithHtml extends Mailable
     {
         return $this->from($this->fromEmail, $this->fromName)
             ->subject($this->subject)
-            ->view('MailWithHtml.Building_Software_Apps'); // Specify the view// Pass data to the view
+            ->view('MailWithHtml.Building_Software_Apps')
+            ->with([
+                'signature' => $this->signature // Access signature properly
+            ]); // Specify the view// Pass data to the view
     }
 }
