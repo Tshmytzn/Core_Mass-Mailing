@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\AccountModel;
+use Illuminate\Support\Facades\Hash;
 
 class AccountSeeder extends Seeder
 {
@@ -70,7 +71,7 @@ class AccountSeeder extends Seeder
             $model->acc_username = $acc[0];
             $model->acc_company_id = $acc[1];
             $model->acc_email = $acc[2]; 
-            $model->acc_password = $acc[3];
+            $model->acc_password = Hash::make($acc[3]);
             $model->acc_type = $acc[4];
             $model->acc_pic = $acc[5];
             $model->save();
