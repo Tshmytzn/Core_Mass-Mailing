@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Account', function (Blueprint $table) {
+        Schema::create('account', function (Blueprint $table) {
             $table->uuid('acc_id')->primary(); // Use UUID as primary key
             $table->string('acc_username')->nullable();
             $table->string('acc_email')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
         });
 
         // Insert default record with a UUID for acc_id
-        DB::table('Account')->insert([
+        DB::table('account')->insert([
             [
                 'acc_id' => (string) Guid::uuid4(), // Generate UUID
                 'acc_username' => 'Admin',
@@ -43,6 +43,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('Account');
+        Schema::dropIfExists('account');
     }
 };

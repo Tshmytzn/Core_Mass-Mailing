@@ -10,7 +10,7 @@ class AccountModel extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'Account';
+    protected $table = 'account';
 
     // Use UUID for the primary key
     protected $primaryKey = 'acc_id';
