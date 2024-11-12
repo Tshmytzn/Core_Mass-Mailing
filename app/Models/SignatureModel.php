@@ -34,7 +34,7 @@ class SignatureModel extends Model
         parent::boot();
 
         // Create a UUID for the sig_id attribute when a new model instance is created
-        static::creating(function ($signature) {
+        static::creating(function ($signature): void {
             if (!$signature->sig_id) {
                 $signature->sig_id = (string) Str::uuid(); // Generate UUID
             }

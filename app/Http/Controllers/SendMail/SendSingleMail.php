@@ -10,7 +10,9 @@ use App\Mail\SingleMailerWithHtmlv2;
 use App\Mail\SingleMailerWithHtmlv3;
 use App\Models\AccountModel;
 use App\Models\SignatureModel;
+use App\Models\SingleMailHistory;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class SendSingleMail extends Controller
 {
@@ -33,6 +35,14 @@ class SendSingleMail extends Controller
         $subject = $request->subject;
         $fromEmail = $request->mailfrom;
 
+        $history = new SingleMailHistory();
+        $history->acc_id = session('acc_id');
+        $history->smh_mailto = $request->mailto;
+        $history->smh_content = $subject;
+        $history->smh_date = Carbon::now('Asia/Hong_Kong')->format('Y-m-d');
+        $history->smh_type = 'Word';
+        $history->save();
+
         // Send the email
         Mail::to($request->mailto)->send(new SingleMailer($details, $subject, $fromEmail, $fromName, $cleanedSignature));
 
@@ -50,6 +60,14 @@ class SendSingleMail extends Controller
 
         // Check if the signature exists and clean the body
         $cleanedSignature = $signature ? $signature->sig_body : '';
+
+        $history = new SingleMailHistory();
+        $history->acc_id = session('acc_id');
+        $history->smh_mailto = $request->mailto;
+        $history->smh_content = $subject;
+        $history->smh_date = Carbon::now('Asia/Hong_Kong')->format('Y-m-d');
+        $history->smh_type = 'Brochure';
+        $history->save();
 
         if($request->flexRadioDefault=='1'){
             Mail::to($request->mailto)->send(new SingleMailerWithHtml($subject, $fromEmail, $fromName, $cleanedSignature));

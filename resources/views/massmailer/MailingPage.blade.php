@@ -36,8 +36,27 @@
                 <div class="card-body">
                   <div class="row">
                     <!-- Sidebar (col-2) or empty space on the left (optional) -->
-                    <div class="col-12 col-md-3 border p-3">
-                        <!-- You can put content here if needed for a sidebar -->
+                    <div class="col-12 col-md-3 border p-3 overflow-auto" style="height: 600px; overflow-y: auto;">
+         
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet, nibh eu venenatis auctor, ligula justo ultrices justo, at bibendum ligula dui a erat. Mauris non ex bibendum, gravida velit eu, viverra ex.</p>
+        <p>Aliquam erat volutpat. Integer a nisi at odio facilisis cursus a sed libero. Vivamus eu eros ac odio dignissim viverra. Pellentesque vehicula massa ut orci bibendum, sed viverra mauris volutpat. Sed ut velit at metus faucibus aliquam. Curabitur feugiat tellus in lacus tincidunt, a bibendum lacus convallis.</p>
+    
                     </div>
                     @php
                       $data = App\Models\AccountModel::where('acc_id',session('acc_id'))->first();

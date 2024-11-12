@@ -280,11 +280,9 @@
 <table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 <tr>
 <td class="pad" style="padding-bottom:5px;padding-top:5px;">
-<div style="color:#ffffff;direction:ltr;font-family:'Inter','Arial';font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
+<div style="color:#ffffff;direction:ltr;font-family:'Inter','Arial';font-size:14px;font-weight:400;letter-spacing:0px;line-height:150%;text-align:center;mso-line-height-alt:21px;">
 <p style="margin: 0; margin-bottom: 16px;">Copyright © 2024 <a draggable="false" href="http://www.coresupporthub.com/" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">www.coresupporthub.com</a>, All rights reserved.</p>
 <p style="margin: 0;">Changed your mind? You can <a href="https://forms.gle/h3qFg4VmTUtAJbYJA" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">Unsubscribe</a> at any time.</p>
-er" style="text-decoration: underline; color: #7747ff;" target="_blank">www.coresupporthub.com</a>, All rights reserved.</p>
-<p style="margin: 0;">Changed your mind? You can <a href="" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">unsubscribe</a> at any time.</p>
 </div>
 </td>
 </tr>
