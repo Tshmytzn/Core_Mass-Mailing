@@ -23,6 +23,7 @@ class AccountModel extends Authenticatable
 
     protected $fillable = [
         'acc_username',
+        'acc_fullname',
         'acc_email',
         'acc_password',
         'acc_company_id',

@@ -52,11 +52,19 @@
                                 </div>
                             </div>
 
+                            <!-- Full Name Field -->
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Email Name</label>
+                                    <input type="text" class="form-control" id="fullname" name="fullname" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+
                             <!-- Email Field -->
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
-                                    <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                                 </div>
                             </div>
 

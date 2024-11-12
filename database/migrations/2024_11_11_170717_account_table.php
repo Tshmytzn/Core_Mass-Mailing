@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('account', function (Blueprint $table) {
             $table->uuid('acc_id')->primary(); // Use UUID as primary key
             $table->string('acc_username')->nullable();
+            $table->string('acc_fullname')->nullable();
             $table->string('acc_email')->nullable();
             $table->string('acc_password')->nullable();
             $table->string('acc_company_id')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             [
                 'acc_id' => (string) Guid::uuid4(), // Generate UUID
                 'acc_username' => 'Admin',
+                'acc_fullname' => 'Admin',
                 'acc_company_id' => '000000001',
                 'acc_email' => 'Admin',
                 'acc_password' => Hash::make('Admin'),
