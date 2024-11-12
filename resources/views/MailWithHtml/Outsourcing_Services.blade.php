@@ -287,13 +287,7 @@
 </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-<tr>
-<td class="pad" style="padding-bottom:5px;padding-top:5px;">
-<div style="color:#ffffff;direction:ltr;font-family:'Inter','Arial';font-size:14px;font-weight:400;letter-spacing:0px;line-height:150%;text-align:center;mso-line-height-alt:21px;">
-<p style="margin: 0; margin-bottom: 16px;">Copyright © 2024 <p draggable="false"  rel="noopener" style="text-decoration: underline; color: #7747ff;" >www.coresupporthub.com</a>, All rights reserved.</p>
-</div>
-</td>
-</tr>
+
 </table>
 </td>
 </tr>
