@@ -33,7 +33,7 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     })->name('loading');
 
     Route::get('/mailing/emailtemplate', action: function () {
-        return view('MailWithHtml.Building_Software_Apps');
+        return view('MailWithHtml.Remote_It');
     })->name('mailTemplate');
 
     Route::post('/Logout', [loginController::class, 'Logout'])->name('Logout');

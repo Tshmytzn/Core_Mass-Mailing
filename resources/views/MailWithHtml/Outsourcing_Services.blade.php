@@ -269,15 +269,6 @@
 <tr>
 <td class="pad">
 <div align="center" class="alignment">
-<table border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;" width="180px">
-<tr>
-<td style="padding:0 2px 0 2px;"><a href="https://www.facebook.com/beefreeio" target="_blank"><img alt="facebook" height="auto" src="{{asset('mail_html_css/os_css/facebook2x.png')}}" style="display: block; height: auto; border: 0;" title="facebook" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://twitter.com/beefreeio" target="_blank"><img alt="twitter" height="auto" src="{{asset('mail_html_css/os_css/twitter2x.png')}}" style="display: block; height: auto; border: 0;" title="twitter" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://www.linkedin.com/company/bee-editor/" target="_blank"><img alt="linkedin" height="auto" src="{{asset('mail_html_css/os_css/linkedin2x.png')}}" style="display: block; height: auto; border: 0;" title="linkedin" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://www.instagram.com/beefree.io/" target="_blank"><img alt="instagram" height="auto" src="{{asset('mail_html_css/os_css/instagram2x.png')}}" style="display: block; height: auto; border: 0;" title="instagram" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://www.youtube.com/@design-with-bee" target="_blank"><img alt="Youtube" height="auto" src="{{asset('mail_html_css/os_css/youtube2x.png')}}" style="display: block; height: auto; border: 0;" title="Youtube" width="32"/></a></td>
-</tr>
-</table>
 </div>
 </td>
 </tr>
@@ -301,7 +292,7 @@
 <div style="color:#ffffff;direction:ltr;font-family:'Inter','Arial';font-size:14px;font-weight:400;letter-spacing:0px;line-height:150%;text-align:center;mso-line-height-alt:21px;">
 <p style="margin: 0; margin-bottom: 16px;">Copyright © 2024 <a draggable="false" href="http://www.coresupporthub.com/" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">www.coresupporthub.com</a>, All rights reserved.</p>
 <p style="margin: 0; margin-bottom: 16px;"><strong>Where to find us</strong><br/>Bacolod City, Philippines</p>
-<p style="margin: 0;">Changed your mind? You can <a href="" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">unsubscribe</a> at any time.</p>
+<p style="margin: 0;">Changed your mind? You can <a href="https://forms.gle/h3qFg4VmTUtAJbYJA" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">Unsubscribe</a> at any time.</p>
 </div>
 </td>
 </tr>
