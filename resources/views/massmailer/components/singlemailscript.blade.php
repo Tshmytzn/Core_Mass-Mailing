@@ -28,7 +28,7 @@
                     document.getElementById('loadingPage').style.display='none';
                     alertify.success(response.message);
                      $('#submitEmailForm').find('input, textarea').not('#mailfrom').val('');
-                     $('.summernote').summernote('code', '');
+                     $('#summernote').summernote('code', '');
                 },
                 error: function(xhr, status, error) {
                     console.error('Form submission failed:', error);

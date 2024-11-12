@@ -49,7 +49,7 @@
             url: '{{ route('GetAccount') }}', // Replace with your endpoint route
             type: 'GET', // HTTP method (GET)
             success: function(response) {
-
+                document.getElementById('fullname').value=response.acc_fullname;
                 document.getElementById('username').value=response.acc_username;
                 document.getElementById('email').value=response.acc_email;
                 document.getElementById('company_id').value=response.acc_company_id;

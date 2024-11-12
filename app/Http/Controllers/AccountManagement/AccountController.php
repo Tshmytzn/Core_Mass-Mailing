@@ -25,6 +25,7 @@ class AccountController extends Controller
 
         // Update fields
         $data->acc_email = $request->input('email');
+        $data->acc_fullname = $request->input('fullname');
         $data->acc_company_id = $request->input('company_id');
         $data->acc_username = $request->input('username');
 
