@@ -18,40 +18,22 @@ class SingleMailerWithHtml extends Mailable
      */
     public $subject;
     public $fromEmail;
-    public function __construct($subject, $fromEmail = null)
+    public $fromName;
+    public function __construct($subject, $fromEmail = null, $fromName = 'Default Sender Name')
     {
+        
         $this->subject = $subject;
-        $this->fromEmail = $fromEmail;
+        $this->fromEmail = $fromEmail ?? 'info@coresupporthub.com';
+        $this->fromName = $fromName;
     }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      */
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            subject: $this->subject,
-            from: $this->fromEmail ? $this->fromEmail : 'info@coresupporthub.com', // Use dynamic or default "from" email.
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'MailWithHtml.Building_Software_Apps',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->from($this->fromEmail, $this->fromName)
+            ->subject($this->subject)
+            ->view('MailWithHtml.Building_Software_Apps'); // Specify the view// Pass data to the view
     }
 }

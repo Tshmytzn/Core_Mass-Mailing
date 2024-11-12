@@ -27,14 +27,16 @@ class SendSingleMail extends Controller
     }
     public function sendEmailWithHTMl(request $request)
     {
+        $user = AccountModel::where('acc_id', session('acc_id'))->first();
+        $fromName = $user->acc_fullname;
         $subject = $request->subject;
         $fromEmail = $request->mailfrom;
         if($request->flexRadioDefault=='1'){
-            Mail::to($request->mailto)->send(new SingleMailerWithHtml($subject, $fromEmail));
+            Mail::to($request->mailto)->send(new SingleMailerWithHtml($subject, $fromEmail, $fromName));
         }else if($request->flexRadioDefault=='2'){
-            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv2($subject, $fromEmail));
+            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv2($subject, $fromEmail, $fromName));
         }else{
-            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv3($subject, $fromEmail));
+            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv3($subject, $fromEmail,$fromName));
         }
 
         
