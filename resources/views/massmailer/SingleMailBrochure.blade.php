@@ -36,7 +36,7 @@
                 <div class="card-body">
                   <div class="row">
                     <!-- Sidebar (col-2) or empty space on the left (optional) -->
-                    <div class="col-12 col-md-3 border p-3">
+                    <div class="col-12 col-md-3 border p-3 overflow-auto" id="historyData" style="height: 700px; overflow-y: auto;">
                         <!-- You can put content here if needed for a sidebar -->
                     </div>
                     @php

@@ -42,6 +42,9 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     // single mail
     Route::post('/sendEmail', [SendSingleMail::class, 'sendEmail'])->name('sendEmail');
     Route::post('/sendEmailWithHTMl', [SendSingleMail::class, 'sendEmailWithHTMl'])->name('sendEmailWithHTMl');
+    Route::get('/GetSingleMailWord', [SendSingleMail::class, 'GetSingleMailWord'])->name('GetSingleMailWord');
+    Route::get('/GetSingleMailBrochure', [SendSingleMail::class, 'GetSingleMailBrochure'])->name('GetSingleMailBrochure');
+    
 
     // userData
     Route::post('/updateuserdata', [AccountController::class, 'UpdateAccount'])->name('UpdateAccount');

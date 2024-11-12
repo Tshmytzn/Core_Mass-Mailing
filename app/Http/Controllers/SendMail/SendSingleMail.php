@@ -80,4 +80,13 @@ class SendSingleMail extends Controller
         
         return response()->json(['message' => 'Email Successfully Send', 'status' => 'success']);
     }
+
+    public function GetSingleMailWord(){
+        $data = SingleMailHistory::where('acc_id',session('acc_id'))->where('smh_type','Word')->orderBy('created_at', 'desc')->get();
+        return response()->json(['data'=>$data]);
+    }
+    public function GetSingleMailBrochure(){
+        $data = SingleMailHistory::where('acc_id',session('acc_id'))->where('smh_type','Brochure')->orderBy('created_at', 'desc')->get();
+        return response()->json(['data'=>$data]);
+    }
 }
