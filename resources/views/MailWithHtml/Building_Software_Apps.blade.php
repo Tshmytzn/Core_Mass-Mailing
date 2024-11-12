@@ -102,8 +102,8 @@
 		}
 	</style><!--[if mso ]><style>sup, sub { font-size: 100% !important; } sup { mso-text-raise:10% } sub { mso-text-raise:-10% }</style> <![endif]-->
 </head>
-<body class="body" style="margin: 0; background-color: #e7c1b7; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-<table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #e7c1b7;" width="100%">
+<body class="body" style="margin: 0; background-color: #ffffff; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+<table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;" width="100%">
 <tbody>
 <tr>
 <td>
@@ -132,7 +132,7 @@
 </tr>
 </tbody>
 </table>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #e7c1b7; background-size: auto;" width="100%">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; background-size: auto;" width="100%">
 <tbody>
 <tr>
 <td>
@@ -260,16 +260,7 @@
 <tr>
 <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 <div align="center" class="alignment" style="line-height:10px">
-<div style="max-width: 172.5px;"><img height="auto" src="{{asset('mail_html_css/bsa_css/28b2c7a6-0da5-461d-b2e0-5efd17a836c9.png')}}" style="display: block; height: auto; border: 0; width: 100%;" width="172.5"/></div>
-</div>
-</td>
-</tr>
-</table>
-<table border="0" cellpadding="10" cellspacing="0" class="social_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-<tr>
-<td class="pad">
-<div align="center" class="alignment">
-</div>
+<div style="max-width: 172.5px;"><img height="auto" src="{{asset('mail_html_css/bsa_css/28b2c7a6-0da5-461d-b2e0-5efd17a836c9.png')}}" style="display: block; height: auto; border: 0; width: 100%;" width="172.5"/></</div>
 </td>
 </tr>
 </table>
@@ -292,6 +283,8 @@
 <div style="color:#ffffff;direction:ltr;font-family:'Inter','Arial';font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
 <p style="margin: 0; margin-bottom: 16px;">Copyright © 2024 <a draggable="false" href="http://www.coresupporthub.com/" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">www.coresupporthub.com</a>, All rights reserved.</p>
 <p style="margin: 0;">Changed your mind? You can <a href="https://forms.gle/h3qFg4VmTUtAJbYJA" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">Unsubscribe</a> at any time.</p>
+er" style="text-decoration: underline; color: #7747ff;" target="_blank">www.coresupporthub.com</a>, All rights reserved.</p>
+<p style="margin: 0;">Changed your mind? You can <a href="" rel="noopener" style="text-decoration: underline; color: #7747ff;" target="_blank">unsubscribe</a> at any time.</p>
 </div>
 </td>
 </tr>
@@ -305,12 +298,12 @@
 </tbody>
 </table>
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-7" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;" width="100%">
+<div>
+        {!! $signature !!} <!-- This will render the signature HTML -->
+</div>
 <tbody>
 
 </tbody>
 </table><!-- End -->
-<div>
-    {!! $signature !!} <!-- This will render the signature HTML -->
-</div>
 </body>
 </html>
