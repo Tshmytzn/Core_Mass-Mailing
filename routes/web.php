@@ -50,6 +50,8 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
     // signature Data
     Route::post('/AddSignature', [SignatureController::class, 'AddSignature'])->name('AddSignature');
+    Route::get('/GetSignature', [SignatureController::class, 'GetSignature'])->name('GetSignature');
+    
 });
 
 Route::get('/login', function () {

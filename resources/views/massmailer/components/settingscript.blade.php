@@ -82,7 +82,8 @@
                 contentType: false, // Required for FormData
                 success: function(response) {
                     document.getElementById('loadingPage').style.display='none';
-                    console.log(response)
+                    alertify.success(response.message);
+                    getSignature();
                 },
                 error: function(xhr, status, error) {
                     console.error('Form submission failed:', error);
@@ -91,6 +92,24 @@
 
     });
 
+    function getSignature(){
+
+        $.ajax({
+            url: '{{ route('GetSignature') }}', // Replace with your endpoint route
+            type: 'GET', // HTTP method (GET)
+            success: function(response) {
+                console.log(response)
+                console.log(response.signature.sig_body)
+                $('#summernote').summernote('code', response.signature.sig_body);
+            },
+            error: function(xhr, status, error) {
+                document.getElementById('loadingPage').style.display = 'none';
+                console.error('Request failed:', error); // Log error for debugging
+                alertify.error('Failed to fetch data');
+            }
+        });
+
+    }
 
     $(document).ready(function() {    
         getUserData();
@@ -100,6 +119,6 @@
             maxHeight: null, // Optionally specify the maximum height
             width: '100%', // Set the width to 100% (you can also set specific pixel values like '500px')
         });
-
+        getSignature();
     });
 </script>

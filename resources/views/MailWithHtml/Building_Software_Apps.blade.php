@@ -309,5 +309,8 @@
 
 </tbody>
 </table><!-- End -->
+<div>
+    {!! $signature !!} <!-- This will render the signature HTML -->
+</div>
 </body>
 </html>
