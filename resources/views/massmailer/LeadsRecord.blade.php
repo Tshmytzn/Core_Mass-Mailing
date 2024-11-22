@@ -5,7 +5,7 @@
   <script src="{{asset('./dist/js/demo-theme.min.js?1692870487')}}"></script>
   <div class="page">
    @include('massmailer.components.loadingpage')
-    @include('massmailer.components.nav')
+   @include('massmailer.components.nav', ['active' => 'leads'])
     
     <div class="page-wrapper">
       <!-- Page header -->
