@@ -3,26 +3,29 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\ShouldQueue; // Implement ShouldQueue
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SingleMailerWithHtmlv2 extends Mailable
+class SingleMailerWithHtmlv2 extends Mailable implements ShouldQueue // Add ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public $subject;
     public $fromEmail;
     public $fromName;
     public $signature;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param string $subject
+     * @param string|null $fromEmail
+     * @param string|null $fromName
+     * @param string|null $signature
+     */
     public function __construct($subject, $fromEmail = null, $fromName = 'Default Sender Name', $signature)
     {
-
         $this->subject = $subject;
         $this->fromEmail = $fromEmail ?? 'info@coresupporthub.com';
         $this->fromName = $fromName;
@@ -36,9 +39,9 @@ class SingleMailerWithHtmlv2 extends Mailable
     {
         return $this->from($this->fromEmail, $this->fromName)
             ->subject($this->subject)
-            ->view('MailWithHtml.Outsourcing_Services')
+            ->view('MailWithHtml.Outsourcing_Services') // Specify your view
             ->with([
-                'signature' => $this->signature // Access signature properly
-            ]); // Specify the view// Pass data to the view
+                'signature' => $this->signature // Pass data to the view
+            ]);
     }
 }

@@ -87,6 +87,7 @@
                 success: function(response) {
                     document.getElementById('loadingPage').style.display='none';
                     alertify.success(response.message);
+                     GetDataHistory();
                      $('#submitEmailForm').find('input').not('#mailfrom').each(function() {
                         if ($(this).is(':radio')) {
                             $(this).prop('checked', false); // Reset radio button

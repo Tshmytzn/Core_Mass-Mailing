@@ -16,10 +16,10 @@ use Carbon\Carbon;
 
 class SendSingleMail extends Controller
 {
-    public function sendEmail(request $request)
+    public function sendEmail(Request $request)
     {
         $details = [
-            'message' => $request->body
+            'message' => $request->body,
         ];
 
         // Get the user data
@@ -28,13 +28,12 @@ class SendSingleMail extends Controller
 
         // Get the signature data and clean the body
         $signature = SignatureModel::where('acc_id', session('acc_id'))->first();
-
-        // Check if the signature exists and clean the body
         $cleanedSignature = $signature ? $signature->sig_body : '';
 
         $subject = $request->subject;
         $fromEmail = $request->mailfrom;
 
+        // Save the email history
         $history = new SingleMailHistory();
         $history->acc_id = session('acc_id');
         $history->smh_mailto = $request->mailto;
@@ -43,13 +42,16 @@ class SendSingleMail extends Controller
         $history->smh_type = 'Word';
         $history->save();
 
-        // Send the email
-        Mail::to($request->mailto)->send(new SingleMailer($details, $subject, $fromEmail, $fromName, $cleanedSignature));
+        // Queue the email
+        Mail::to($request->mailto)->queue(
+            new SingleMailer($details, $subject, $fromEmail, $fromName, $cleanedSignature)
+        );
 
-        return response()->json(['message' => 'Email Successfully Sent', 'status' => 'success']);
+        return response()->json(['message' => 'Email Successfully Queued', 'status' => 'success']);
     }
 
-    public function sendEmailWithHTMl(request $request)
+
+    public function sendEmailWithHTMl(Request $request)
     {
         $user = AccountModel::where('acc_id', session('acc_id'))->first();
         $fromName = $user->acc_fullname;
@@ -57,8 +59,6 @@ class SendSingleMail extends Controller
         $fromEmail = $request->mailfrom;
 
         $signature = SignatureModel::where('acc_id', session('acc_id'))->first();
-
-        // Check if the signature exists and clean the body
         $cleanedSignature = $signature ? $signature->sig_body : '';
 
         $history = new SingleMailHistory();
@@ -69,17 +69,23 @@ class SendSingleMail extends Controller
         $history->smh_type = 'Brochure';
         $history->save();
 
-        if($request->flexRadioDefault=='1'){
-            Mail::to($request->mailto)->send(new SingleMailerWithHtml($subject, $fromEmail, $fromName, $cleanedSignature));
-        }else if($request->flexRadioDefault=='2'){
-            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv2($subject, $fromEmail, $fromName, $cleanedSignature));
-        }else{
-            Mail::to($request->mailto)->send(new SingleMailerWithHtmlv3($subject, $fromEmail,$fromName, $cleanedSignature));
+        if ($request->flexRadioDefault == '1') {
+            Mail::to($request->mailto)->queue(
+                new SingleMailerWithHtml($subject, $fromEmail, $fromName, $cleanedSignature)
+            );
+        } elseif ($request->flexRadioDefault == '2') {
+            Mail::to($request->mailto)->queue(
+                new SingleMailerWithHtmlv2($subject, $fromEmail, $fromName, $cleanedSignature)
+            );
+        } else {
+            Mail::to($request->mailto)->queue(
+                new SingleMailerWithHtmlv3($subject, $fromEmail, $fromName, $cleanedSignature)
+            );
         }
 
-        
-        return response()->json(['message' => 'Email Successfully Send', 'status' => 'success']);
+        return response()->json(['message' => 'Email Successfully Queued', 'status' => 'success']);
     }
+
 
     public function GetSingleMailWord(){
         $data = SingleMailHistory::where('acc_id',session('acc_id'))->where('smh_type','Word')->orderBy('created_at', 'desc')->get();

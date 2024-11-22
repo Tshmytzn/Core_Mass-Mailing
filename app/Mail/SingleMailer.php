@@ -3,10 +3,11 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue; // Add this
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SingleMailer extends Mailable
+class SingleMailer extends Mailable implements ShouldQueue // Implement ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -43,8 +44,8 @@ class SingleMailer extends Mailable
             ->subject($this->subject)
             ->view('welcome') // Specify the view
             ->with([
-                'details' => $this->details, // Access details properly
-                'signature' => $this->signature // Access signature properly
+                'details' => $this->details,
+                'signature' => $this->signature,
             ]);
     }
 }

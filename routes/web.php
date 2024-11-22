@@ -21,6 +21,14 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
         return view('massmailer.SingleMailBrochure');
     })->name('singlemailbrochure');
 
+    Route::get('/massmailing/brochure', function () {
+        return view('massmailer.MassMailingBrochure');
+    })->name('massmailigbrochure');
+
+    Route::get('/massmailing/word', function () {
+        return view('massmailer.MassMailingWord');
+    })->name('massmailingword');
+
     Route::get('/setting', function () {
         return view('massmailer.Setting');
     })->name('Setting');
@@ -37,6 +45,14 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
         return view('MailWithHtml.Remote_It');
     })->name('mailTemplate');
 
+
+    // leads View
+    Route::get('/leads/', function () {
+        return view('massmailer.LeadsRecord');
+    })->name('leadsrecord');
+
+
+    
     Route::post('/Logout', [loginController::class, 'Logout'])->name('Logout');
 
     // single mail
