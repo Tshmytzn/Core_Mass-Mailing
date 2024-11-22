@@ -2,9 +2,15 @@
 document.getElementById('uploadButton').addEventListener('click', function () {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-
+    document.getElementById('loadingPage').style.display='flex';
     if (!file) {
-        alert('Please select a file first!');
+        document.getElementById('loadingPage').style.display='none';
+        Swal.fire({
+            icon: 'warning', // Use 'warning' to indicate attention is needed
+            title: 'No File Selected',
+            text: 'Please select a file first!',
+            confirmButtonText: 'Okay'
+        });
         return;
     }
 
@@ -21,9 +27,8 @@ document.getElementById('uploadButton').addEventListener('click', function () {
         // Convert sheet data to JSON
         const jsonData = XLSX.utils.sheet_to_json(sheet);
 
-        // Extract specific columns (case-insensitive and handle missing columns)
+        // Normalize and extract relevant columns
         const extractedData = jsonData.map(row => {
-            // Normalize keys to lowercase
             const normalizedRow = Object.keys(row).reduce((acc, key) => {
                 acc[key.toLowerCase()] = row[key];
                 return acc;
@@ -35,33 +40,88 @@ document.getElementById('uploadButton').addEventListener('click', function () {
                 email: normalizedRow['email'] || '',
                 number: normalizedRow['number'] || '',
                 company: normalizedRow['company'] || '',
-                linkedin: normalizedRow['linkedin'] || '',  
+                type: normalizedRow['service offered'] || '',
             };
         });
 
-        // Log extractedData for testing
-        console.log(extractedData);
+        // Filter out rows that don't have at least one of firstname, lastname, or company
+        const validData = extractedData.filter(row => row.firstname || row.lastname || row.email);
 
-        // Send to Laravel using AJAX
-        // $.ajax({
-        //     url: '/your-laravel-route',
-        //     type: 'POST',
-        //     data: {
-        //         _token: '{{ csrf_token() }}', // Include CSRF token
-        //         data: extractedData,
-        //     },
-        //     success: function (response) {
-        //         console.log('Data successfully sent:', response);
-        //         alert('Data imported successfully!');
-        //     },
-        //     error: function (xhr) {
-        //         console.error('Error sending data:', xhr.responseText);
-        //         alert('Failed to import data. Please try again.');
-        //     },
-        // });
+        if (validData.length === 0) {
+            document.getElementById('loadingPage').style.display='none';
+           Swal.fire({
+                icon: 'error', // Use 'error' to indicate an issue
+                title: 'Invalid Data',
+                text: 'No valid data found. At least one of "First Name", "Last Name", or "Company" must be present in each row.',
+                confirmButtonText: 'Okay'
+            });
+            return;
+        }
+
+        // Chunk the data into smaller parts (e.g., 100 rows per chunk)
+        const chunkSize = 100;  // Adjust based on your preference
+        const chunks = [];
+        for (let i = 0; i < validData.length; i += chunkSize) {
+            chunks.push(validData.slice(i, i + chunkSize));
+        }
+
+        // Send each chunk via AJAX
+        chunks.forEach((chunk, index) => {
+            $.ajax({
+                url:  `{{route('InsertLeadsData')}}`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}', // Include CSRF token
+                    data: chunk,
+                },
+                success: function (response) {
+                document.getElementById('loadingPage').style.display='none';
+                Swal.fire({
+                    title: "Data Successfully Insert",
+                    icon: "success"
+                });
+                },
+                error: function (xhr) {
+                    console.error('Error sending chunk:', xhr.responseText);
+                    alert('Failed to import some data. Please try again.');
+                },
+            });
+        });
     };
 
     reader.readAsArrayBuffer(file);
 });
 
+function GetLeadsData() {
+    $.ajax({
+        url: '{{ route('GetLeadsData') }}', // Replace with your endpoint route
+        type: 'GET', // HTTP method (GET)
+        success: function(response) {
+           
+            // Initialize DataTable with the fetched data
+            $('#leads-table').DataTable( {
+                data: response.data,
+                 columns: [
+                    { data: 'lead_firstname' }, // First Name
+                    { data: 'lead_lastname' },  // Last Name
+                    { data: 'lead_email' },     // Email
+                    { data: 'lead_company' },    // Company
+                     { data: 'lead_company' } 
+                ],
+            } );
+        },
+        error: function(xhr, status, error) {
+            document.getElementById('loadingPage').style.display = 'none';  // Hide loading page on error
+            console.error('Request failed:', error); // Log error for debugging
+            alertify.error('Failed to fetch data');  // Display error message using alertify
+        }
+    });
+}
+
+
+
+
+$(document).ready(function() {
+     GetLeadsData()
+     });
 </script>

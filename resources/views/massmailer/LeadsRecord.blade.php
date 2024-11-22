@@ -45,10 +45,33 @@
         <div class="container-xl">
           <div class="row row-deck row-cards">
 
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-12">
               <div class="card">
                 <div class="card-body">
                   
+                <div class="row">
+                <div class="col-lg-12">
+                <div class="card">
+                  <div class="table-responsive">
+                    <table class="table table-vcenter card-table" id="leads-table">
+                      <thead>
+                        <tr>
+                          <th>Company</th>
+                          <th>Email</th>
+                          <th>Full Name</th>
+                          <th>Service Offered</th>
+                          <th class="w-1"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+               </div> 
+
                 </div>
               </div>
             </div>
@@ -67,8 +90,26 @@
           <div class="modal-body">
 
             <div class="row">
-              <label for="">Insert Lead Data</label>
-             <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" class="form-control" />
+              <div class="col-12">
+                <div class="text-danger mb-3">
+                  Excel or CSV must contain the following column names:
+                  <table class="table table-bordered table-sm mt-2">
+                    <thead>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="fileInput" class="form-label">Insert Lead Data</label>
+                <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" class="form-control" />
+              </div>
             </div>
 
           </div>

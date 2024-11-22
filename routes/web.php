@@ -6,6 +6,7 @@ use App\Http\Controllers\AccountManagement\loginController;
 use App\Http\Controllers\AccountManagement\AccountController;
 use App\Http\Controllers\SignatureManagement\SignatureController;
 use App\Http\Middleware\AccountAuthMiddleware;
+use App\Http\Controllers\LeadsManagement\LeadsController;
 
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
@@ -70,6 +71,10 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     // signature Data
     Route::post('/AddSignature', [SignatureController::class, 'AddSignature'])->name('AddSignature');
     Route::get('/GetSignature', [SignatureController::class, 'GetSignature'])->name('GetSignature');
+
+    // leads Data
+    Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
+    Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
     
 });
 
