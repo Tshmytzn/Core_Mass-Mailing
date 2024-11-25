@@ -60,7 +60,7 @@
                           <th>Email</th>
                           <th>Full Name</th>
                           <th>Service Offered</th>
-                          <th class="w-1"></th>
+                          <th class="w-1">Action</th>
                         </tr>
                       </thead>
                       <tbody>

@@ -25,12 +25,9 @@ class MailRecordModel extends Model
     // Define fillable fields
     protected $fillable = [
         'acc_id',
-        'mr_mailto',
-        'mr_name',
-        'mr_company',
+        'lead_id',
         'mr_type',
         'mr_status',
-        'mr_send_count'
     ];
 
     // Specify date fields for Carbon casting

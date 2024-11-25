@@ -47,4 +47,15 @@ class LeadsController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function GetLeadsDataByService(Request $request)
+    {
+        $data = LeadRecords::where('acc_id', session('acc_id'))
+            ->where('lead_type', $request->type)
+            ->where('lead_status',null)
+            ->take(10) // Limit to 10 results
+            ->get();
+
+        return response()->json(['data' => $data]);
+    }
+
 }

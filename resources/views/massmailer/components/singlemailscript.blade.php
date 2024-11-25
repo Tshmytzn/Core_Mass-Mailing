@@ -5,63 +5,64 @@
             url: '{{ route('GetSingleMailWord') }}', // Replace with your endpoint route
             type: 'GET', // HTTP method (GET)
             success: function(response) {
-                    const dataBody = document.getElementById('historyData');
+                   const dataBody = document.getElementById('historyData');
                     dataBody.innerHTML = ``;
-                    response.data.forEach(element => {
+
+                    response.data.forEach((element, index) => {
                         // Extract and format the date
                         const dateObj = new Date(element.smh_date);
                         const formattedDate = dateObj.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
-                        // Create the main container div with Bootstrap classes
-                        const container = document.createElement('div');
-                        container.className = 'container m-1';
+                        // Create the anchor element
+                        const anchor = document.createElement("a");
+                        anchor.href = `#chat-${index + 1}`; // Unique anchor href
+                        anchor.className = "nav-link text-start mw-100 p-3";
+                        anchor.id = `chat-${index + 1}-tab`; // Unique ID
+                        anchor.setAttribute("data-bs-toggle", "pill");
+                        anchor.setAttribute("role", "tab");
+                        anchor.setAttribute("aria-selected", "false"); // Default to false
 
-                        // Create the card div
-                        const card = document.createElement('div');
-                        card.className = 'card';
+                        // Create the row div
+                        const row = document.createElement("div");
+                        row.className = "row align-items-center flex-fill";
 
-                        // Create the card body div
-                        const cardBody = document.createElement('div');
-                        cardBody.className = 'card-body';
+                        // Create the first column with the avatar
+                        const colAvatar = document.createElement("div");
+                        colAvatar.className = "col-auto";
+                        const avatar = document.createElement("span");
+                        avatar.className = "avatar";
+                        avatar.textContent = 'Core'; // Use dynamic avatar or default
+                        colAvatar.appendChild(avatar);
 
-                        // Create the title row for title and date
-                        const titleRow = document.createElement('div');
-                        titleRow.className = 'd-flex justify-content-between align-items-center';
+                        // Create the second column with text content
+                        const colText = document.createElement("div");
+                        colText.className = "col text-body";
+                        const nameDiv = document.createElement("div");
+                        nameDiv.textContent = element.smh_mailto || "Unknown"; // Use dynamic name or default
+                        const messageDiv = document.createElement("div");
+                        messageDiv.className = "text-secondary text-truncate w-100";
+                        messageDiv.textContent = element.smh_content || "No message available"; // Use dynamic message or default
+                        colText.appendChild(nameDiv);
+                        colText.appendChild(messageDiv);
 
-                        // Create the title element, using element's title data
-                        const title = document.createElement('h5');
-                        title.className = 'card-title mb-0';
-                        title.innerText = element.smh_mailto || ''; // Use dynamic title from smh_mailto or empty string if not available
+                        // Create the third column with the date
+                        const colDate = document.createElement("div");
+                        colDate.className = "col-auto";
+                        const dateSpan = document.createElement("span");
+                        dateSpan.textContent = formattedDate || "Unknown date"; // Use formatted date or fallback
+                        colDate.appendChild(dateSpan);
 
-                        // Append title to titleRow
-                        titleRow.appendChild(title);
+                        // Append all columns to the row
+                        row.appendChild(colAvatar);
+                        row.appendChild(colText);
+                        row.appendChild(colDate);
 
-                        // Create the horizontal line
-                        const hr = document.createElement('hr');
-                        hr.className = 'my-2';
+                        // Append the row to the anchor
+                        anchor.appendChild(row);
 
-                        // Create the content paragraph, using element's content data
-                        const content = document.createElement('p');
-                        content.className = 'card-text text-muted';
-                        content.innerText = element.smh_content || ''; // Use dynamic content from smh_content or empty string if not available
-
-                        // Create the date element, using the formatted date
-                        const dateElement = document.createElement('small');
-                        dateElement.className = 'text-muted d-block mt-2'; // Add margin-top to separate from content
-                        dateElement.innerText = formattedDate || ''; // Use formatted date or empty string
-
-                        // Assemble the card
-                        cardBody.appendChild(titleRow);
-                        cardBody.appendChild(hr);
-                        cardBody.appendChild(content);
-                        cardBody.appendChild(dateElement); // Move date below content
-                        card.appendChild(cardBody);
-                        container.appendChild(card);
-
-                        // Append the container to the dataBody
-                        dataBody.appendChild(container);
+                        // Append the anchor to the data body
+                        dataBody.appendChild(anchor);
                     });
-
 
                 },
             error: function(xhr, status, error) {

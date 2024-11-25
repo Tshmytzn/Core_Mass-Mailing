@@ -80,6 +80,7 @@ document.getElementById('uploadButton').addEventListener('click', function () {
                     title: "Data Successfully Insert",
                     icon: "success"
                 });
+                 GetLeadsData()
                 },
                 error: function (xhr) {
                     console.error('Error sending chunk:', xhr.responseText);
@@ -101,12 +102,18 @@ function GetLeadsData() {
             // Initialize DataTable with the fetched data
             $('#leads-table').DataTable( {
                 data: response.data,
+                destroy:true,
                  columns: [
-                    { data: 'lead_firstname' }, // First Name
-                    { data: 'lead_lastname' },  // Last Name
-                    { data: 'lead_email' },     // Email
-                    { data: 'lead_company' },    // Company
-                     { data: 'lead_company' } 
+                    { data: 'lead_company' }, // First Name
+                    { data: 'lead_email' },  // Last Name
+                    { data: null,
+                        render: function ( data, type, row ) {
+                            return `${row.lead_firstname} ${row.lead_lastname}`;
+                            }
+
+                    },     // Email
+                    { data: 'lead_type' },    // Company
+                    { data: 'lead_company' } 
                 ],
             } );
         },

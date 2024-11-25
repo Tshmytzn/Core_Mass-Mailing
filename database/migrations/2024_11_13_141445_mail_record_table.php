@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('mail_record', callback: function (Blueprint $table) {
             $table->uuid('mr_id')->primary(); // Use UUID as primary key
             $table->string('acc_id')->nullable();
-            $table->string('mr_mailto')->nullable();
-            $table->string('mr_name')->nullable();
-            $table->string('mr_company')->nullable();
+            $table->string('lead_id')->nullable();
             $table->string('mr_type')->nullable();
             $table->string('mr_status')->nullable();
-            $table->string('mr_send_count')->nullable();
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\AccountManagement\AccountController;
 use App\Http\Controllers\SignatureManagement\SignatureController;
 use App\Http\Middleware\AccountAuthMiddleware;
 use App\Http\Controllers\LeadsManagement\LeadsController;
+use App\Http\Controllers\BrochureMassMailing\BrochureMassMailingController;
 
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
@@ -75,7 +76,11 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     // leads Data
     Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
     Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
-    
+    Route::post('/GetLeadsDataByService', [LeadsController::class, 'GetLeadsDataByService'])->name('GetLeadsDataByService');
+
+    //Brochure Mass Mailing
+    Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
+    Route::get('/BrochureMassMailingHistory', [BrochureMassMailingController::class, 'BrochureMassMailingHistory'])->name('BrochureMassMailingHistory');
 });
 
 Route::get('/login', function () {
