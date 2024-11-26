@@ -34,7 +34,7 @@
                         <div class="row g-0">
                             <div class="col-12 col-lg-5 col-xl-3 border-end">
 
-                                <div class="card-body p-0 scrollable" style="max-height: 35rem">
+                                <div class="card-body p-0 scrollable" style="max-height: 40rem">
                                     <div class="nav flex-column nav-pills" role="tablist" id="historyData">
 
                                         

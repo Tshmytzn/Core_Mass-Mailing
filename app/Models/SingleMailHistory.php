@@ -24,6 +24,7 @@ class SingleMailHistory extends Model
     protected $fillable = [
         'acc_id',
         'smh_mailto',
+        'smh_subject',
         'smh_content',
         'smh_date',
         'smh_type',

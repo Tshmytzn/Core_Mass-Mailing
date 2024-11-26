@@ -30,7 +30,8 @@
               </div>
               <div class="col-3 border border-2 p-2">
                 <div class="row align-items-center g-2">
-                  <div class="col-9">
+                  <label for="">Services</label>
+                  <div class="col-12">
                     <select name="service" id="service" class="form-control" onchange="GetLeadsData(this.value)">
                       <option value="">Select Service</option>
                       <option value="Software Development">Software Development</option>
@@ -40,8 +41,8 @@
                       <option value="Remote Employee Management">Remote Employee Management</option>
                     </select>
                   </div>
-                  <div class="col-3">
-                    <button class="btn btn-primary" id="send-email-btn" type="button">Send Email</button>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" id="send-email-btn" type="button">Send Email</button>
                   </div>
                 </div>
               </div>
