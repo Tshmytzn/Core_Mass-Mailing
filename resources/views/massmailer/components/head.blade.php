@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Core Mailer</title>
     <!-- CSS files -->
+    <link rel="icon" type="image/x-icon" href="{{asset('logo/core_log.png')}}">
     <link href="{{asset('./dist/css/tabler.min.css?1692870487')}}" rel="stylesheet" />
     <link href="{{asset('./dist/css/tabler-flags.min.css?1692870487')}}" rel="stylesheet" />
     <link href="{{asset('./dist/css/tabler-payments.min.css?1692870487')}}" rel="stylesheet" />
@@ -42,4 +43,80 @@
     
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
+    <style>
+              .nav-item {
+            position: relative;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.4s ease;
+        }
+
+        .nav-item .nav-link {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item .nav-link-icon svg {
+            margin-right: 5px;
+            transition: fill 0.3s ease, stroke 0.3s ease;
+        }
+
+        .nav-item.active .nav-link {
+            color: white;
+        }
+
+        .nav-item.active .nav-link-icon svg {
+            margin-right: 5px;
+            transition: stroke 0.3s ease;
+            stroke: #ffffff;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #0099ff, #0a58be);
+            border-radius: 5px;
+        }
+
+        .nav-item.active:hover {
+            background: linear-gradient(135deg, #0a58be, #0099ff);
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background-color: #0a58be;
+            width: 0;
+            transition: width 0.4s ease, transform 0.4s ease;
+        }
+
+        .nav-item.active~.navbar::after {
+            width: 100px;
+            transform: translateX(calc(100px * var(--nav-index)));
+        }
+
+        .nav-item:nth-child(1) {
+            --nav-index: 0;
+        }
+
+        .nav-item:nth-child(2) {
+            --nav-index: 1;
+        }
+
+        .nav-item:nth-child(3) {
+            --nav-index: 2;
+        }
+
+        .nav-item:nth-child(4) {
+            --nav-index: 3;
+        }
+
+        .nav-item:nth-child(5) {
+            --nav-index: 4;
+        }
+    </style>
 </head>
