@@ -27,12 +27,12 @@
                         row.className = "row align-items-center flex-fill";
 
                         // Create the first column with the avatar
-                        const colAvatar = document.createElement("div");
-                        colAvatar.className = "col-auto";
-                        const avatar = document.createElement("span");
-                        avatar.className = "avatar";
-                        avatar.textContent = 'Core'; // Use dynamic avatar or default
-                        colAvatar.appendChild(avatar);
+                        // const colAvatar = document.createElement("div");
+                        // colAvatar.className = "col-auto";
+                        // const avatar = document.createElement("span");
+                        // avatar.className = "avatar";
+                        // avatar.textContent = 'Core'; // Use dynamic avatar or default
+                        // colAvatar.appendChild(avatar);
 
                         // Create the second column with text content
                         const colText = document.createElement("div");
@@ -41,7 +41,7 @@
                         nameDiv.textContent = element.smh_mailto || "Unknown"; // Use dynamic name or default
                         const messageDiv = document.createElement("div");
                         messageDiv.className = "text-secondary text-truncate w-100";
-                        messageDiv.textContent = element.smh_content || "No message available"; // Use dynamic message or default
+                        messageDiv.textContent = element.smh_subject || "No subject available"; // Use dynamic message or default
                         colText.appendChild(nameDiv);
                         colText.appendChild(messageDiv);
 
@@ -53,7 +53,7 @@
                         colDate.appendChild(dateSpan);
 
                         // Append all columns to the row
-                        row.appendChild(colAvatar);
+                        // row.appendChild(colAvatar);
                         row.appendChild(colText);
                         row.appendChild(colDate);
 

@@ -37,7 +37,8 @@ class SendSingleMail extends Controller
         $history = new SingleMailHistory();
         $history->acc_id = session('acc_id');
         $history->smh_mailto = $request->mailto;
-        $history->smh_content = $subject;
+        $history->smh_content = $request->body;
+        $history->smh_subject = $subject;
         $history->smh_date = Carbon::now('Asia/Hong_Kong')->format('Y-m-d');
         $history->smh_type = 'Word';
         $history->save();

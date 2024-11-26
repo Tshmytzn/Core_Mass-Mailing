@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('smh_id')->primary(); // Use UUID as primary key
             $table->string('acc_id')->nullable();
             $table->string('smh_mailto')->nullable();
-            $table->string('smh_content')->nullable();
+            $table->string('smh_subject')->nullable();
+            $table->longText('smh_content')->nullable();
             $table->string('smh_date')->nullable();
             $table->string('smh_type')->nullable();
             $table->timestamps();
