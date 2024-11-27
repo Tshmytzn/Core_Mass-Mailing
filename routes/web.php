@@ -8,6 +8,7 @@ use App\Http\Controllers\SignatureManagement\SignatureController;
 use App\Http\Middleware\AccountAuthMiddleware;
 use App\Http\Controllers\LeadsManagement\LeadsController;
 use App\Http\Controllers\BrochureMassMailing\BrochureMassMailingController;
+use App\Http\Controllers\EmailTemplateManagement\EmailTemplateController;
 
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
@@ -36,7 +37,7 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     })->name('Setting');
 
     Route::get('/template', function () {
-        return view('massmailer.template');
+        return view('massmailer.Template');
     })->name('template');
 
     Route::get('/mail/sendsinglemail', function () {
@@ -85,6 +86,10 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     //Brochure Mass Mailing
     Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
     Route::get('/BrochureMassMailingHistory', [BrochureMassMailingController::class, 'BrochureMassMailingHistory'])->name('BrochureMassMailingHistory');
+
+    //
+    Route::post('/AddTemplate', [EmailTemplateController::class, 'AddTemplate'])->name('AddTemplate');
+    
 });
 
 Route::get('/login', function () {

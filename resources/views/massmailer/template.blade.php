@@ -34,13 +34,28 @@
               <div class="accordion" id="accordion-example">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="heading-1">
-                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
                       Software Development 
                     </button>
                   </h2>
-                  <div id="collapse-1" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">
+                  <div id="collapse-1" class="accordion-collapse collapse " data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
-                      <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+
+                      <form action="" id="soft-form" method="post">
+                      <div class="mb-3 row">
+                        <div class="col-sm-12">
+                          <input type="text" name="type" value="Software Development">
+                          <label for="template-subject" class="form-label">Template Subject</label>
+                          <input type="text" name="subject" id="template-subject" class="form-control"> 
+
+                          <label for="soft-summernote" class="form-label mt-3">Template Body</label>
+                          <textarea name="body" id="soft-summernote" class="form-control" cols="30" rows="10"></textarea>
+
+                          <button type="button" class="mt-3 btn btn-primary w-100" onclick="SavaTemplate('soft-form')">Update</button>
+                        </div>
+                      </div>
+                      </form>
+
                     </div>
                   </div>
                 </div>
@@ -52,7 +67,20 @@
                   </h2>
                   <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
-                      <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      
+                      <div class="mb-3 row">
+                        <div class="col-sm-12">
+                          <input type="text" name="type" value="IT Manage Services">
+                          <label for="template-subject" class="form-label">Template Subject</label>
+                          <input type="text" id="template-subject" class="form-control"> 
+
+                          <label for="it-summernote" class="form-label mt-3">Template Body</label>
+                          <textarea name="body" id="it-summernote" class="form-control" cols="30" rows="10"></textarea>
+
+                          <button type="button" class="mt-3 btn btn-primary w-100">Update</button>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -64,7 +92,20 @@
                   </h2>
                   <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
-                      <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      
+                      <div class="mb-3 row">
+                        <div class="col-sm-12">
+                          <input type="text" name="type" value="BPO">
+                          <label for="template-subject" class="form-label">Template Subject</label>
+                          <input type="text" id="template-subject" class="form-control" placeholder="Enter template subject">
+
+                          <label for="business-summernote" class="form-label mt-3">Template Body</label>
+                          <textarea name="body" id="business-summernote" class="form-control" cols="30" rows="10" placeholder="Enter template body"></textarea>
+
+                          <button type="button" class="btn btn-primary mt-3 w-100">Update</button>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -76,7 +117,20 @@
                   </h2>
                   <div id="collapse-4" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
-                      <strong>This is the fourth item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      
+                      <div class="mb-3 row">
+                        <div class="col-sm-12">
+                          <input type="text" name="type" value="Startup MVP">
+                          <label for="template-subject" class="form-label">Template Subject</label>
+                          <input type="text" id="template-subject" class="form-control" placeholder="Enter template subject">
+
+                          <label for="mvp-summernote" class="form-label mt-3">Template Body</label>
+                          <textarea name="body" id="mvp-summernote" class="form-control" cols="30" rows="10" placeholder="Enter template body"></textarea>
+
+                          <button type="button" class="btn btn-primary mt-3 w-100">Update</button>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -89,6 +143,7 @@
     </div>
   </div>
   @include('massmailer.components.script')
+  @include('massmailer.components.emailtemplatescript')
 </body>
 
 </html>
