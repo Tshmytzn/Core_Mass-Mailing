@@ -34,7 +34,7 @@
               <div class="accordion" id="accordion-example">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="heading-1">
-                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
                       Software Development 
                     </button>
                   </h2>
