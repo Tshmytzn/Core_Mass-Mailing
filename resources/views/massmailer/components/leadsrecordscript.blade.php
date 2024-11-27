@@ -77,7 +77,7 @@ document.getElementById('uploadButton').addEventListener('click', function () {
                 success: function (response) {
                 document.getElementById('loadingPage').style.display='none';
                 Swal.fire({
-                    title: "Data Successfully Insert",
+                    title: "Leads Successfully Uploaded",
                     icon: "success"
                 });
                  GetLeadsData()

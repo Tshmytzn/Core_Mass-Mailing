@@ -18,7 +18,7 @@
                                 Overview
                             </div>
                             <h2 class="page-title">
-                                Mass Mailing Brochure
+                                Mass Brochure Email Campaign
                             </h2>
                         </div>
                         <!-- Page title actions -->
@@ -42,7 +42,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                    <table class="table table-vcenter card-table" id="sent-table">
+                                    <table class="table table-hover card-table" id="sent-table">
                                     <thead>
                                         <tr>
                                         <th>Company</th>
