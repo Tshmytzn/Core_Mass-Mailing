@@ -87,7 +87,7 @@
 
                         <!-- Submit Button -->
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" onclick="UpdateUserData()">Update</button>
+                            <button type="button" class="btn btn-primary mb-1" onclick="UpdateUserData()">Update</button>
                         </div>
 
                         
@@ -103,7 +103,7 @@
                 <div class="card-body">
 
                   <div id="summernote"></div>
-                  <button type="buttom" id="logButton" class="btn btn-primary">Update</button>
+                  <button type="buttom" id="logButton" class="btn btn-primary mt-3">Update</button>
                 </div>
               </div>
             </div>
