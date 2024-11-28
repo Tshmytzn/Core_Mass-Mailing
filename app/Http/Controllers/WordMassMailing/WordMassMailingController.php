@@ -27,8 +27,7 @@ class WordMassMailingController extends Controller
         foreach ($leadIds as $leadId) {
 
             $mailto = LeadRecords::where('lead_id', $leadId)->first();
-            $mailto->lead_status += 1 ;
-            $mailto->save();
+           
 
             $user = AccountModel::where('acc_id', session('acc_id'))->first();
             $fromName = $user->acc_fullname;
@@ -44,11 +43,15 @@ class WordMassMailingController extends Controller
             $history->save();
             
             if($mailto->lead_status == '1'){
+                $mailto->lead_status += 1;
+                $mailto->save();
                 $temp = EmailTemplate::where('temp_type', $service)->where('temp_followup','false')->first();
             }else{
+                $mailto->lead_status += 1;
+                $mailto->save();
                 $temp = EmailTemplate::where('temp_type', $service)->where('temp_followup', 'true')->first();  
             }
-
+            
             Mail::to($mailto->lead_email)->queue(
                 new WordMassMailing($fromEmail, $fromName, $mailto->lead_firstname,$temp->temp_subject,$temp->temp_body, $cleanedSignature)
             );
