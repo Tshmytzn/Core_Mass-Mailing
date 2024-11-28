@@ -84,6 +84,7 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
     Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
     Route::post('/GetLeadsDataByService', [LeadsController::class, 'GetLeadsDataByService'])->name('GetLeadsDataByService');
+    Route::post('/ManualInsertLeadsdata', [LeadsController::class, 'ManualinputLeadsData'])->name('ManualinputLeadsData');
 
     //Brochure Mass Mailing
     Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
