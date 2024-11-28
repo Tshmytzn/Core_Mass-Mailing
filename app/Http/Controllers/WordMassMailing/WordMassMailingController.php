@@ -48,7 +48,6 @@ class WordMassMailingController extends Controller
             }else{
                 $temp = EmailTemplate::where('temp_type', $service)->where('temp_followup', 'true')->first();  
             }
-
             Mail::to($mailto->lead_email)->queue(
                 new WordMassMailing($fromEmail, $fromName, $mailto->lead_firstname,$temp->temp_subject,$temp->temp_body, $cleanedSignature)
             );
