@@ -122,15 +122,27 @@
                             data: 'lead_type'
                         }, // Company
                         {
-                            data: 'lead_company'
-                        }
+                            data: 'action',
+                            render: function(data, type, row) {
+                                return `<button class="btn btn-sm btn-ghost-danger btn-md delete-btn text-center" data-id="${row.lead_id}">
+                                        <svg class='m-1' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M4 7l16 0"/>
+                                            <path d="M10 11l0 6"/>
+                                            <path d="M14 11l0 6"/>
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/>
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>
+                                        </svg>
+                                    </button>`;
+                            }
+                        },
                     ],
                 });
             },
             error: function(xhr, status, error) {
-                document.getElementById('loadingPage').style.display = 'none'; // Hide loading page on error
-                console.error('Request failed:', error); // Log error for debugging
-                alertify.error('Failed to fetch data'); // Display error message using alertify
+                document.getElementById('loadingPage').style.display = 'none'; 
+                console.error('Request failed:', error); 
+                alertify.error('Failed to fetch data'); 
             }
         });
     }
@@ -150,23 +162,25 @@
                     title: 'Oops...',
                     text: 'Please fill in all the required fields!',
                 });
-                return; 
+                return;
             }
         }
 
         $.ajax({
-            url: '/ManualInsertLeadsdata', 
+            url: '/ManualInsertLeadsdata',
             method: 'POST',
             data: formData,
-            processData: false, 
-            contentType: false, 
+            processData: false,
+            contentType: false,
             success: function(response) {
 
-                document.getElementById('ManualinputLeadsForm').reset();
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Lead data has been inserted successfully!',
+                    text: 'Leads Data inserted successfully!',
+                }).then(function() {
+
+                    $('#leads-table').DataTable().ajax.reload();
                 });
 
             },
@@ -181,6 +195,49 @@
         });
 
     }
+
+    $(document).on('click', '.delete-btn', function() {
+        var leadId = $(this).data('id');
+
+        const formData = new FormData();
+        formData.append('id', leadId);
+        formData.append('_token', '{{ csrf_token() }}');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: '/delete-lead',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            'The lead has been deleted.',
+                            'success'
+                        );
+                        GetLeadsData();
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire(
+                            'Error!',
+                            'There was an issue deleting the lead. Please try again.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    });
 
 
     $(document).ready(function() {

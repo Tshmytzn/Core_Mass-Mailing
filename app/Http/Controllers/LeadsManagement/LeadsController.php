@@ -111,4 +111,21 @@ class LeadsController extends Controller
         ], 201);
     }
 
+    public function deleteLead(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required',
+        ]);
+
+            $lead = LeadRecords::where('lead_id',$validated['id']);
+        
+            if ($lead) {
+                $lead->delete();
+                return response()->json(['message' => 'Lead deleted successfully.'], 200);
+            } else {
+                return response()->json(['message' => 'Lead not found.'], 404);
+            }
+            
+    }
+
 }

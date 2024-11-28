@@ -84,11 +84,11 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
     Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
     Route::post('/GetLeadsDataByService', [LeadsController::class, 'GetLeadsDataByService'])->name('GetLeadsDataByService');
+    Route::post('/delete-lead', [LeadsController::class, 'deleteLead'])->name('deletelead');
 
     Route::post('/GetLeadsDataWordByService', [LeadsController::class, 'GetLeadsDataWordByService'])->name('GetLeadsDataWordByService');
     Route::post('/GetLeadsDataWordByServiceFollowUp', [LeadsController::class, 'GetLeadsDataWordByServiceFollowUp'])->name('GetLeadsDataWordByServiceFollowUp');
     Route::post('/ManualInsertLeadsdata', [LeadsController::class, 'ManualinputLeadsData'])->name('ManualinputLeadsData');
-
 
     //Brochure Mass Mailing
     Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
