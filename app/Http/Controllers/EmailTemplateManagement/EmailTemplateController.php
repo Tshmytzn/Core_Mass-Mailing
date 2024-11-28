@@ -16,7 +16,7 @@ class EmailTemplateController extends Controller
             'type' => 'required|string',
         ]);
 
-        $check = EmailTemplate::where('temp_type', $validated['type'])->first();
+        $check = EmailTemplate::where('temp_type', $validated['type'])->where('temp_followup','false')->first();
         if($check){
             $check->delete();
         }
@@ -39,5 +39,12 @@ class EmailTemplateController extends Controller
             'message' => 'Template saved successfully!',
             'template' => $template
         ]);
+    }
+
+    public function GetTemplate(Request $request){
+        $data = EmailTemplate::where('acc_id', session('acc_id'))->get();
+        return response()->json([
+            'data' => $data
+            ]);
     }
 }

@@ -21,7 +21,6 @@ function validateForm(formId) {
 }
 
 function SavaTemplate(formId) {
-
     if (!validateForm(formId)) {
             Swal.fire({
             icon: "error",
@@ -48,7 +47,10 @@ function SavaTemplate(formId) {
         contentType: false, // Required for FormData
         success: function (response) {
             document.getElementById('loadingPage').style.display = 'none';
-
+            Swal.fire({
+            text: "Email Template Successfully Added!",
+            icon: "success"
+            });
         },
         error: function (xhr, status, error) {
             document.getElementById('loadingPage').style.display = 'none';
@@ -57,11 +59,67 @@ function SavaTemplate(formId) {
     });
 }
 
+function GetTemplate() {
+    $.ajax({
+        url: '{{ route('GetTemplate') }}', // Replace with your endpoint route
+        type: 'GET', // HTTP method (GET)
+        success: function(response) {
+            console.log(response);
+            const data = response.data;
+            
+            if (!data || data.length === 0) {
+                alertify.warning('No templates found.');
+                return;
+            }
+            
+            // Map temp_type to corresponding elements
+            const templateMap = {
+                'Software Development': {
+                    subject: 'soft-template-subject',
+                    editor: '#soft-summernote',
+                },
+                'IT Manage Services': {
+                    subject: 'it-template-subject',
+                    editor: '#it-summernote',
+                },
+                'BPO': {
+                    subject: 'business-template-subject',
+                    editor: '#business-summernote',
+                },
+                'Startup MVP': {
+                    subject: 'mvp-template-subject',
+                    editor: '#mvp-summernote',
+                }
+            };
+
+            // Loop through templates and set values dynamically
+            data.forEach(element => {
+                const template = templateMap[element.temp_type];
+                if (template) {
+                    document.getElementById(template.subject).value = element.temp_subject;
+                    $(template.editor).summernote('code', element.temp_body);
+                } else {
+                    console.warn(`Unknown template type: ${element.temp_type}`);
+                }
+            });
+        },
+        error: function(xhr, status, error) {
+            document.getElementById('loadingPage').style.display = 'none';
+            console.error('Request failed:', error); // Log error for debugging
+            alertify.error('Failed to fetch data');
+        }
+    });
+}
 
 $(document).ready(function() {
+    // Initialize Summernote editors
     $('#soft-summernote').summernote();
     $('#it-summernote').summernote();
     $('#business-summernote').summernote();
     $('#mvp-summernote').summernote();
-});  
+    
+    // Fetch templates on load
+    GetTemplate();
+});
+
 </script>
