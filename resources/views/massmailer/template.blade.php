@@ -215,7 +215,7 @@
                                                         <textarea name="body" id="softdev-summernote" class="form-control" cols="30" rows="10"></textarea>
 
                                                         <button type="button" class="mt-3 btn btn-primary w-100"
-                                                            onclick="SavaTemplate('softdev-form')">Update</button>
+                                                            onclick="SavaFullowupTemplate('softdev-form')">Update</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -251,7 +251,7 @@
                                                         <textarea name="body" id="managed-summernote" class="form-control" cols="30" rows="10"></textarea>
 
                                                         <button type="button" class="mt-3 btn btn-primary w-100"
-                                                            onclick="SavaTemplate('managed-form')">Update</button>
+                                                            onclick="SavaFullowupTemplate('managed-form')">Update</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -287,7 +287,7 @@
                                                             placeholder="Enter template body"></textarea>
 
                                                         <button type="button" class="btn btn-primary mt-3 w-100"
-                                                            onclick="SavaTemplate('bpo-form')">Update</button>
+                                                            onclick="SavaFullowupTemplate('bpo-form')">Update</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -324,7 +324,7 @@
                                                             placeholder="Enter template body"></textarea>
 
                                                         <button type="button" class="btn btn-primary mt-3 w-100"
-                                                            onclick="SavaTemplate('smvp-form')">Update</button>
+                                                            onclick="SavaFullowupTemplate('smvp-form')">Update</button>
                                                     </div>
                                                 </div>
                                             </form>
