@@ -31,10 +31,7 @@
             <div class="page-body">
                 <div class="container-xl">
                     {{-- Email templates --}}
-                    <div class="card my-2"
-                        style="border: 4px solid; 
-                           border-image: linear-gradient(to right, #add8e6, #0077b6, #001f54); 
-                           border-image-slice: 1;">
+                    <div class="card my-2">
                         <div class="card-body">
                             <div class="accordion" id="accordion-example">
                                 <h2 class="text-primary"> Cold Email template </h2>
@@ -186,10 +183,7 @@
                     </div>
 
                     {{-- Follow up email template --}}
-                    <div class="card my-2"
-                        style="border: 4px solid; 
-                           border-image: linear-gradient(to right, #add8e6, #0077b6, #001f54); 
-                           border-image-slice: 1;">
+                    <div class="card my-2" >
                         <div class="card-body">
                             <div class="accordion" id="accordion-example">
                                 <h2 class="text-primary"> Follow Up Email template </h2>

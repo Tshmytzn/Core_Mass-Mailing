@@ -90,6 +90,8 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     //
     Route::post('/AddTemplate', [EmailTemplateController::class, 'AddTemplate'])->name('AddTemplate');
     Route::get('/GetTemplate', [EmailTemplateController::class, 'GetTemplate'])->name('GetTemplate');
+    Route::get('/GetFollowupTemplate', [EmailTemplateController::class, 'GetFollowupTemplate'])->name('GetFollowupTemplate');
+
 });
 
 Route::get('/login', function () {

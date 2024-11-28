@@ -47,4 +47,11 @@ class EmailTemplateController extends Controller
             'data' => $data
             ]);
     }
+
+    public function GetFollowupTemplate(Request $request){
+        $data = EmailTemplate::where('acc_id', session('acc_id'))->get();
+        return response()->json([
+            'data' => $data
+            ]);
+    }
 }
