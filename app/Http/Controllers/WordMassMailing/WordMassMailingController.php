@@ -43,7 +43,7 @@ class WordMassMailingController extends Controller
             $history->mr_type = 'Word';
             $history->save();
             
-            if($mailto->lead_status == '1'){
+            if($mailto->lead_status == '1' || $mailto->lead_status == null){
                 $temp = EmailTemplate::where('temp_type', $service)->where('temp_followup','false')->first();
             }else{
                 $temp = EmailTemplate::where('temp_type', $service)->where('temp_followup', 'true')->first();  
