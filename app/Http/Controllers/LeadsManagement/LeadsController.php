@@ -61,7 +61,7 @@ class LeadsController extends Controller
     {
         $data = LeadRecords::where('acc_id', session('acc_id'))
         ->where('lead_type', $request->type)
-            ->where('lead_status', '<','2')
+            ->where('lead_status', '<','1')
             ->take(10) // Limit to 10 results
             ->get();
 
