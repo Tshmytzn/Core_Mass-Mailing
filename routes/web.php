@@ -39,7 +39,7 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     })->name('Setting');
 
     Route::get('/template', function () {
-        return view('massmailer.Template');
+        return view('massmailer.template');
     })->name('template');
 
     Route::get('/mail/sendsinglemail', function () {
