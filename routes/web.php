@@ -9,6 +9,8 @@ use App\Http\Middleware\AccountAuthMiddleware;
 use App\Http\Controllers\LeadsManagement\LeadsController;
 use App\Http\Controllers\BrochureMassMailing\BrochureMassMailingController;
 use App\Http\Controllers\EmailTemplateManagement\EmailTemplateController;
+use App\Http\Controllers\DashboardAnalytics\AnalyticsController;
+
 
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
@@ -87,10 +89,15 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
     Route::get('/BrochureMassMailingHistory', [BrochureMassMailingController::class, 'BrochureMassMailingHistory'])->name('BrochureMassMailingHistory');
 
-    //
+    //Template
     Route::post('/AddTemplate', [EmailTemplateController::class, 'AddTemplate'])->name('AddTemplate');
     Route::get('/GetTemplate', [EmailTemplateController::class, 'GetTemplate'])->name('GetTemplate');
     Route::get('/GetFollowupTemplate', [EmailTemplateController::class, 'GetFollowupTemplate'])->name('GetFollowupTemplate');
+
+    // Analytics
+    Route::get('/getLeadsoverview', [AnalyticsController::class, 'getleadsoverview'])->name('getleadsoverview');
+    Route::get('/getemailsoverview', [AnalyticsController::class, 'getemailsoverview'])->name('getemailsoverview');
+
 
 });
 
