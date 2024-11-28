@@ -33,7 +33,7 @@ class BrochureMassMailingController extends Controller
 
             $user = AccountModel::where('acc_id', session('acc_id'))->first();
             $fromName = $user->acc_fullname;
-            $fromEmail = $request->mailfrom;
+            $fromEmail = $user->acc_email;
 
             $signature = SignatureModel::where('acc_id', session('acc_id'))->first();
             $cleanedSignature = $signature ? $signature->sig_body : '';
