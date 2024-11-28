@@ -7,15 +7,15 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
               <ul class="list-inline list-inline-dots mb-0">
                 <li class="list-inline-item">
-                  Copyright &copy; 2023
-                  <a href="." class="link-secondary">Tabler</a>.
+                  Copyright &copy; 2024
+                  <a href="." class="link-secondary">Core Tish & JP</a>.
                   All rights reserved.
                 </li>
-                <li class="list-inline-item">
+                {{-- <li class="list-inline-item">
                   <a href="./changelog.html" class="link-secondary" rel="noopener">
                     v1.0.0-beta20
                   </a>
-                </li>
+                </li> --}}
               </ul>
             </div>
           </div>
