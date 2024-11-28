@@ -57,5 +57,27 @@ class LeadsController extends Controller
 
         return response()->json(['data' => $data]);
     }
+    public function GetLeadsDataWordByService(Request $request)
+    {
+        $data = LeadRecords::where('acc_id', session('acc_id'))
+        ->where('lead_type', $request->type)
+            ->where('lead_status', '1')
+            ->take(10) // Limit to 10 results
+            ->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function GetLeadsDataWordByServiceFollowUp(Request $request)
+    {
+        $data = LeadRecords::where('acc_id', session('acc_id'))
+        ->where('lead_type', $request->type)
+            ->where('lead_status', '!=','1')
+            ->where('lead_status', '!=', '10')
+            ->take(10) // Limit to 10 results
+            ->get();
+
+        return response()->json(['data' => $data]);
+    }
 
 }

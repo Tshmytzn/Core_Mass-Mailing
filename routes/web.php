@@ -9,7 +9,7 @@ use App\Http\Middleware\AccountAuthMiddleware;
 use App\Http\Controllers\LeadsManagement\LeadsController;
 use App\Http\Controllers\BrochureMassMailing\BrochureMassMailingController;
 use App\Http\Controllers\EmailTemplateManagement\EmailTemplateController;
-
+use App\Http\Controllers\WordMassMailing\WordMassMailingController;
 Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
     Route::get('/', function () {
@@ -82,16 +82,23 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
     Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
     Route::post('/GetLeadsDataByService', [LeadsController::class, 'GetLeadsDataByService'])->name('GetLeadsDataByService');
-
+    Route::post('/GetLeadsDataWordByService', [LeadsController::class, 'GetLeadsDataWordByService'])->name('GetLeadsDataWordByService');
+    Route::post('/GetLeadsDataWordByServiceFollowUp', [LeadsController::class, 'GetLeadsDataWordByServiceFollowUp'])->name('GetLeadsDataWordByServiceFollowUp');
+  
+    
     //Brochure Mass Mailing
     Route::post('/BrochureMassMailing', [BrochureMassMailingController::class, 'BrochureMassMailing'])->name('BrochureMassMailing');
     Route::get('/BrochureMassMailingHistory', [BrochureMassMailingController::class, 'BrochureMassMailingHistory'])->name('BrochureMassMailingHistory');
+    Route::get('/WordMassMailingHistory', [BrochureMassMailingController::class, 'WordMassMailingHistory'])->name('WordMassMailingHistory');
 
-    //
+    //EmailTemplate
     Route::post('/AddTemplate', [EmailTemplateController::class, 'AddTemplate'])->name('AddTemplate');
     Route::post('/AddFollowupTemplate', [EmailTemplateController::class, 'AddFollowupTemplate'])->name('AddFollowupTemplate');
     Route::get('/GetTemplate', [EmailTemplateController::class, 'GetTemplate'])->name('GetTemplate');
     Route::get('/GetFollowupTemplate', [EmailTemplateController::class, 'GetFollowupTemplate'])->name('GetFollowupTemplate');
+
+    //WordMassMailing
+    Route::post('/sendMassEmail', [WordMassMailingController::class, 'sendMassEmail'])->name('sendMassEmail');
 
 });
 

@@ -68,11 +68,22 @@ class BrochureMassMailingController extends Controller
     public function BrochureMassMailingHistory(){
 
         $history = MailRecordModel::join('leads_record', 'mail_record.lead_id', '=', 'leads_record.lead_id')
-            ->where('mr_type', 'Brochure')
+            ->where('mr_type', 'Brochure')->where('mail_record.acc_id',session('acc_id'))
+            ->where('leads_record.lead_status','1')
             ->select('leads_record.*') // Select all fields from leads_record
             ->get();
 
         return response()->json(['data' => $history]);
 
+    }
+    public function WordMassMailingHistory()
+    {
+        $history = MailRecordModel::join('leads_record', 'mail_record.lead_id', '=', 'leads_record.lead_id')
+        ->where('mr_type', 'Brochure')->where('mail_record.acc_id', session('acc_id'))
+        ->where('leads_record.lead_status', '!=','1')
+            ->select('leads_record.*') // Select all fields from leads_record
+            ->get();
+
+        return response()->json(['data' => $history]);
     }
 }
