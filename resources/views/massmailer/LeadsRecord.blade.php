@@ -113,11 +113,12 @@
                                         Excel or CSV must contain the following column names:
                                         <table class="table table-bordered table-sm mt-2">
                                             <thead>
-                                                <tr>
+                                                <tr class="text-center">
                                                     <th>First Name</th>
                                                     <th>Last Name</th>
                                                     <th>Email</th>
                                                     <th>Company</th>
+                                                    <th>Service Offered</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -125,7 +126,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="fileInput" class="form-label">Insert Lead Data</label>
+                                    <label for="fileInput" class="form-label">Upload Leads</label>
                                     <input type="file" id="fileInput" accept=".xlsx, .xls, .csv"
                                         class="form-control" />
                                 </div>
@@ -151,43 +152,68 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="firstName"
-                                        placeholder="Enter First Name" />
+
+                            <form method="POST" id="ManualinputLeadsForm" onsubmit="event.preventDefault();" >
+                                @csrf
+                                <div class="row">
+                                    <input type="hidden" name="acc_id" id="acc_id" value="{{session('acc_id')}}">
+
+                                    <div class="col-12 mb-3">
+                                        <label for="firstName" class="form-label required">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName"
+                                            placeholder="Enter First Name" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="lastName" class="form-label required">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName"
+                                            placeholder="Enter Last Name" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="email" class="form-label required">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Enter Email" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="contact" class="form-label">Contact Number <small
+                                                class="text-secondary"> (Optional) </small></label>
+                                        <input type="tel" class="form-control" id="contact" name="contact"
+                                            placeholder="Enter Contact Number" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="company" class="form-label required">Company</label>
+                                        <input type="text" class="form-control" id="company" name="company"
+                                            placeholder="Enter Company" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="services" class="form-label required">Service Offered</label>
+                                        <select class="form-control" id="services" name="services">
+                                            <option value="">Select a Service</option>
+                                            <option value="Software Development">Software Development</option>
+                                            <option value="IT Manage Services">IT Manage Services</option>
+                                            <option value="BPO">BPO</option>
+                                            <option value="Startup MVP">Startup MVP</option>
+                                            <option value="Remote Employee Management">Remote Employee Management
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-12 mb-3">
-                                    <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName"
-                                        placeholder="Enter Last Name" />
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email"
-                                        placeholder="Enter Email" />
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="company" class="form-label">Company</label>
-                                    <input type="text" class="form-control" id="company"
-                                        placeholder="Enter Company" />
-                                </div>
-                            </div>
+                            </form>
+
                         </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="insertLeadsButton">Insert
-                                    Leads</button>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="ManualinputLeadsData()" id="insertLeadsButton">Insert
+                                Leads</button>
                         </div>
                     </div>
                 </div>
-
-                @include('massmailer.components.footer')
             </div>
+
+            @include('massmailer.components.footer')
         </div>
-        @include('massmailer.components.script')
-        @include('massmailer.components.leadsrecordscript')
+    </div>
+    @include('massmailer.components.script')
+    @include('massmailer.components.leadsrecordscript')
 </body>
 
 </html>

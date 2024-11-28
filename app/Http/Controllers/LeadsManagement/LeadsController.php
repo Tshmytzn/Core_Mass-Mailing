@@ -80,4 +80,35 @@ class LeadsController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function ManualinputLeadsData(Request $request)
+    {
+        $validatedData = $request->validate([
+            'acc_id' => 'nullable|string|max:255',
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:leads_record,lead_email',
+            'contact' => 'nullable|string', 
+            'company' => 'required|string|max:255',
+            'services' => 'required|string|max:255',
+        ]);
+
+        $leadRecord = new LeadRecords();
+        $leadRecord->acc_id = $validatedData['acc_id'];
+        $leadRecord->lead_firstname = $validatedData['firstName'];
+        $leadRecord->lead_lastname = $validatedData['lastName'];
+        $leadRecord->lead_email = $validatedData['email'];
+        $leadRecord->lead_number = $validatedData['contact'];  
+        $leadRecord->lead_company = $validatedData['company'];
+        $leadRecord->lead_type = $validatedData['services']; 
+
+    
+        $leadRecord->save();
+    
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Lead record inserted successfully!',
+            'data' => $leadRecord,
+        ], 201);
+    }
+
 }
