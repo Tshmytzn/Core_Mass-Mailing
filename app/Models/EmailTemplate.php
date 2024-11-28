@@ -25,6 +25,7 @@ class EmailTemplate extends Model
         'temp_subject',
         'temp_body',
         'temp_type',
+        'temp_followup',
     ];
 
     // Cast timestamps to datetime objects

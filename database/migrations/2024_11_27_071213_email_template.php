@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('acc_id')->nullable();
             $table->string('temp_subject')->nullable();
             $table->longText('temp_body')->nullable();
+            $table->string('temp_followup')->nullable()->default('false');
             $table->string('temp_type')->nullable();
             $table->timestamps();
         });

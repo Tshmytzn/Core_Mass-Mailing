@@ -44,9 +44,9 @@
                       <form action="" id="soft-form" method="post">
                       <div class="mb-3 row">
                         <div class="col-sm-12">
-                          <input type="text" name="type" value="Software Development">
+                          <input type="text" name="type" value="Software Development" hidden>
                           <label for="template-subject" class="form-label">Template Subject</label>
-                          <input type="text" name="subject" id="template-subject" class="form-control"> 
+                          <input type="text" name="subject" id="soft-template-subject" class="form-control"> 
 
                           <label for="soft-summernote" class="form-label mt-3">Template Body</label>
                           <textarea name="body" id="soft-summernote" class="form-control" cols="30" rows="10"></textarea>
@@ -68,18 +68,20 @@
                   <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
                       
+                      <form action="" id="it-form" method="post">
                       <div class="mb-3 row">
                         <div class="col-sm-12">
-                          <input type="text" name="type" value="IT Manage Services">
+                          <input type="text" name="type" value="IT Manage Services" hidden>
                           <label for="template-subject" class="form-label">Template Subject</label>
-                          <input type="text" id="template-subject" class="form-control"> 
+                          <input type="text" name="subject" id="it-template-subject" class="form-control"> 
 
                           <label for="it-summernote" class="form-label mt-3">Template Body</label>
                           <textarea name="body" id="it-summernote" class="form-control" cols="30" rows="10"></textarea>
 
-                          <button type="button" class="mt-3 btn btn-primary w-100">Update</button>
+                          <button type="button" class="mt-3 btn btn-primary w-100" onclick="SavaTemplate('it-form')">Update</button>
                         </div>
                       </div>
+                      </form>
 
                     </div>
                   </div>
@@ -93,18 +95,20 @@
                   <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
                       
+                      <form action="" id="business-form" method="post">
                       <div class="mb-3 row">
                         <div class="col-sm-12">
-                          <input type="text" name="type" value="BPO">
+                          <input type="text" name="type" value="BPO" hidden>
                           <label for="template-subject" class="form-label">Template Subject</label>
-                          <input type="text" id="template-subject" class="form-control" placeholder="Enter template subject">
+                          <input type="text" name="subject" id="business-template-subject" class="form-control" placeholder="Enter template subject">
 
                           <label for="business-summernote" class="form-label mt-3">Template Body</label>
                           <textarea name="body" id="business-summernote" class="form-control" cols="30" rows="10" placeholder="Enter template body"></textarea>
 
-                          <button type="button" class="btn btn-primary mt-3 w-100">Update</button>
+                          <button type="button" class="btn btn-primary mt-3 w-100" onclick="SavaTemplate('business-form')">Update</button>
                         </div>
                       </div>
+                      </form>
 
                     </div>
                   </div>
@@ -118,18 +122,20 @@
                   <div id="collapse-4" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                     <div class="accordion-body pt-0">
                       
+                      <form action="" id="startup-form" method="post">
                       <div class="mb-3 row">
                         <div class="col-sm-12">
-                          <input type="text" name="type" value="Startup MVP">
+                          <input type="text" name="type" value="Startup MVP" hidden>
                           <label for="template-subject" class="form-label">Template Subject</label>
-                          <input type="text" id="template-subject" class="form-control" placeholder="Enter template subject">
+                          <input type="text" name="subject" id="mvp-template-subject" class="form-control" placeholder="Enter template subject">
 
                           <label for="mvp-summernote" class="form-label mt-3">Template Body</label>
                           <textarea name="body" id="mvp-summernote" class="form-control" cols="30" rows="10" placeholder="Enter template body"></textarea>
 
-                          <button type="button" class="btn btn-primary mt-3 w-100">Update</button>
+                          <button type="button" class="btn btn-primary mt-3 w-100" onclick="SavaTemplate('startup-form')">Update</button>
                         </div>
                       </div>
+                      </form>
 
                     </div>
                   </div>
