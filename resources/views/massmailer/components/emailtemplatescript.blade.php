@@ -21,13 +21,13 @@ function validateForm(formId) {
 }
 
 function SavaTemplate(formId) {
-    if (!validateForm(formId)) {
-            Swal.fire({
-            icon: "error",
-            text: "Please fill in all required fields.",
-            });
-        return;
-    }
+    // if (!validateForm(formId)) {
+    //         Swal.fire({
+    //         icon: "error",
+    //         text: "Please fill in all required fields.",
+    //         });
+    //     return;
+    // }
 
     const form = document.getElementById(formId);
     const formData = new FormData(form);
@@ -51,6 +51,48 @@ function SavaTemplate(formId) {
             text: "Email Template Successfully Added!",
             icon: "success"
             });
+            GetTemplate();
+        },
+        error: function (xhr, status, error) {
+            document.getElementById('loadingPage').style.display = 'none';
+            console.error('Form submission failed:', error);
+        }
+    });
+}
+
+
+function SavaFullowupTemplate(formId) {
+    // if (!validateForm(formId)) {
+    //         Swal.fire({
+    //         icon: "error",
+    //         text: "Please fill in all required fields.",
+    //         });
+    //     return;
+    // }
+
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+
+    // Add the CSRF token
+    formData.append('_token', '{{ csrf_token() }}');
+    
+    // Show loading indicator
+    document.getElementById('loadingPage').style.display = 'flex';
+
+    // AJAX request
+    $.ajax({
+        url: `{{route('AddFollowupTemplate')}}`, // Replace with your server endpoint
+        type: 'POST',
+        data: formData,
+        processData: false, // Required for FormData
+        contentType: false, // Required for FormData
+        success: function (response) {
+            document.getElementById('loadingPage').style.display = 'none';
+            Swal.fire({
+            text: "Email Template Successfully Added!",
+            icon: "success"
+            });
+            GetFollowupTemplate();
         },
         error: function (xhr, status, error) {
             document.getElementById('loadingPage').style.display = 'none';
@@ -64,7 +106,6 @@ function GetTemplate() {
         url: '{{ route('GetTemplate') }}', // Replace with your endpoint route
         type: 'GET', // HTTP method (GET)
         success: function(response) {
-            console.log(response);
             const data = response.data;
             
             if (!data || data.length === 0) {
@@ -116,7 +157,6 @@ function GetFollowupTemplate() {
         url: '{{ route('GetFollowupTemplate') }}', // Replace with your endpoint route
         type: 'GET', // HTTP method (GET)
         success: function(response) {
-            console.log(response);
             const data = response.data;
             
             if (!data || data.length === 0) {
@@ -176,6 +216,7 @@ $(document).ready(function() {
     
     // Fetch templates on load
     GetTemplate();
+    GetFollowupTemplate()
 });
 
 </script>
