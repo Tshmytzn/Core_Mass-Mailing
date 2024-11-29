@@ -30,6 +30,7 @@ class LeadRecords extends Model
         'lead_type',
         'lead_status',
         'lead_dnc',
+        'lead_send_date',
     ];
 
     // Mutators or setters (if necessary for custom logic)

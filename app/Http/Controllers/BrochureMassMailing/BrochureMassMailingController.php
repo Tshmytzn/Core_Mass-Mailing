@@ -12,6 +12,7 @@ use App\Models\AccountModel;
 use App\Models\SignatureModel;
 use App\Models\MailRecordModel;
 use App\Models\LeadRecords;
+use Carbon\Carbon;
 
 class BrochureMassMailingController extends Controller
 {
@@ -27,8 +28,12 @@ class BrochureMassMailingController extends Controller
 
         foreach ($leadIds as $leadId) {
 
+            $currentDate = Carbon::now('Asia/Hong_Kong');
+            $datePlusThreeDays = $currentDate->addDays(3)->toDateString();
+
             $mailto = LeadRecords::where('lead_id',$leadId)->first();
             $mailto->lead_status = '1';
+            $mailto->lead_send_date = $datePlusThreeDays;
             $mailto->save();
 
             $user = AccountModel::where('acc_id', session('acc_id'))->first();
@@ -80,7 +85,7 @@ class BrochureMassMailingController extends Controller
     {
         $history = MailRecordModel::join('leads_record', 'mail_record.lead_id', '=', 'leads_record.lead_id')
         ->where('mr_type', 'Brochure')->where('mail_record.acc_id', session('acc_id'))
-        ->where('leads_record.lead_status', '!=','1')
+        ->where('leads_record.lead_status', '!=',null)
             ->select('leads_record.*') // Select all fields from leads_record
             ->get();
 

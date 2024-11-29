@@ -59,6 +59,16 @@
                     <option value="Remote Employee Management">Remote Employee Management</option>
                   </select>
                 </div>
+                <label for="">Email Count</label>
+                <div class="col-12">
+                  <select name="sent-count" id="sent-count" class="form-control" onchange="GetLeadsDataFollowUp(this.value)">
+                      <script>
+                          for (let i = 2; i <= 9; i++) {
+                              document.write(`<option value="${i}">${i}</option>`);
+                          }
+                      </script>
+                  </select>
+                </div>
                 <div class="col-12">
                   <button class="btn btn-primary w-100" id="send-email-btn" type="button" onclick="sendmassmailing('2')">Send Email</button>
                 </div>

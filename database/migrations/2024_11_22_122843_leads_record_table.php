@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('lead_number')->nullable();
             $table->string('lead_type')->nullable();
             $table->string('lead_status')->nullable();
+            $table->string('lead_send_date')->nullable();
             $table->string('lead_dnc')->nullable();
             $table->timestamps();
         });

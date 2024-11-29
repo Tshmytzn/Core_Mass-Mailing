@@ -53,7 +53,8 @@ function GetLeadsData(type) {
 function GetLeadsDataFollowUp(type) {
     const formData = new FormData();
     formData.append('_token', '{{ csrf_token() }}');
-    formData.append('type', type);
+    formData.append('type', $('#service2').val());
+    formData.append('send_count', $('#sent-count').val());
 
     $.ajax({
         url: '{{ route('GetLeadsDataWordByServiceFollowUp') }}', // Replace with your endpoint route
@@ -205,8 +206,7 @@ function showsecond() {
 }
 
 
-  function GetSentHistory(){
-
+ function GetSentHistory(){
     $.ajax({
         url: '{{ route('WordMassMailingHistory') }}', // Replace with your endpoint route
         type: 'GET', // HTTP method (GET)
@@ -214,20 +214,21 @@ function showsecond() {
             console.log(response)
             $('#sent-table').DataTable( {
                 data: response.data,
-                destroy:true,
-                 columns: [
+                destroy: true, // Ensure the table is destroyed before reinitializing
+                columns: [
                     { data: 'lead_company' }, // First Name
                     { data: 'lead_email' },  // Last Name
                     { data: null,
-                        render: function ( data, type, row ) {
+                        render: function (data, type, row) {
                             return `${row.lead_firstname} ${row.lead_lastname}`;
-                            }
-
-                    },     // Email
-                    { data: 'lead_type' },
-                    { data: 'lead_status' },
+                        }
+                    }, // Full name
+                    { data: 'lead_type' }, // Lead Type
+                    { data: 'lead_send_date' }, // Lead Send Date
+                    { data: 'lead_status' }, // Lead Status
                 ],
-            } );
+                order: [[4, 'asc']], // Sort by lead_send_date (column index 4) in descending order by default
+            });
         },
         error: function(xhr, status, error) {
             document.getElementById('loadingPage').style.display = 'none';  // Hide loading page on error

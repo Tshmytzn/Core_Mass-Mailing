@@ -11,6 +11,7 @@ use App\Models\MailRecordModel;
 use App\Mail\WordMassMailing;
 use App\Models\LeadRecords;
 use App\Models\EmailTemplate;
+use Carbon\Carbon;
 class WordMassMailingController extends Controller
 {
     public function sendMassEmail(Request $request)
@@ -26,8 +27,11 @@ class WordMassMailingController extends Controller
         
         foreach ($leadIds as $leadId) {
 
+            $currentDate = Carbon::now('Asia/Hong_Kong');
+            $datePlusThreeDays = $currentDate->addDays(3)->toDateString();
+
             $mailto = LeadRecords::where('lead_id', $leadId)->first();
-           
+            $mailto->lead_send_date = $datePlusThreeDays;
 
             $user = AccountModel::where('acc_id', session('acc_id'))->first();
             $fromName = $user->acc_fullname;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LeadsManagement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LeadRecords;
+use Carbon\Carbon;
 class LeadsController extends Controller
 {
     public function InsertLeadsData(Request $request)
@@ -59,8 +60,10 @@ class LeadsController extends Controller
     }
     public function GetLeadsDataWordByService(Request $request)
     {
+        $currentDate = Carbon::now('Asia/Hong_Kong')->toDateString();
         $data = LeadRecords::where('acc_id', session('acc_id'))
         ->where('lead_type', $request->type)
+        ->where('lead_send_date','<=',$currentDate)
             ->where('lead_status', '1')
             ->take(10) // Limit to 10 results
             ->get();
@@ -70,12 +73,13 @@ class LeadsController extends Controller
 
     public function GetLeadsDataWordByServiceFollowUp(Request $request)
     {
+        $currentDate = Carbon::now('Asia/Hong_Kong')->toDateString();
         $data = LeadRecords::where('acc_id', session('acc_id'))
         ->where('lead_type', $request->type)
-            ->where('lead_status', '!=','1')
-            ->where('lead_status', '!=', '10')
-            ->take(10) // Limit to 10 results
-            ->get();
+        ->where('lead_send_date', '<=', $currentDate)
+        ->where('lead_status', $request->send_count)
+        ->take(10) // Limit to 10 results
+        ->get();
 
         return response()->json(['data' => $data]);
     }

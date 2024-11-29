@@ -55,7 +55,10 @@ class EmailTemplateController extends Controller
 
         $body = $validated['body'];
 
-        $body = str_replace('name', '{$name}', $body);
+        // Check if {$name} already exists in the body before replacing
+        if (!str_contains($body, '{$name}')) {
+            $body = str_replace('name', '{$name}', $body);
+        }
 
         $subject = $validated['subject'];
 
@@ -73,6 +76,7 @@ class EmailTemplateController extends Controller
             'template' => $template
         ]);
     }
+
 
     public function GetTemplate(Request $request){
         $data = EmailTemplate::where('acc_id', session('acc_id'))->where('temp_followup','false')->get();

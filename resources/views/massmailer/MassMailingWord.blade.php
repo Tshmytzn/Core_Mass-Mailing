@@ -70,6 +70,7 @@
                                                     <th>Email</th>
                                                     <th>Full Name</th>
                                                     <th>Service Offered</th>
+                                                    <th>Email Schedule</th>
                                                     <th>Sent Count</th>
                                                 </tr>
                                             </thead>
