@@ -108,6 +108,47 @@
                     </div>
                 </div>
 
+
+                <div class="modal modal-blur fade" id="modal-full-width" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Mail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row g-3"> <!-- Add spacing between rows -->
+                            <!-- Mail To -->
+                            <div class="col-12">
+                                <label for="mail-to" class="form-label">Mail To</label>
+                                <input type="text" class="form-control" id="mail-to" readonly>
+                            </div>
+
+                            <!-- Subject -->
+                            <div class="col-12">
+                                <label for="mail-subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="mail-subject" readonly>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="col-12">
+                                <label for="emailContent" class="form-label">Body</label>
+                                <div id="emailContent" class="p-3 border rounded" style="background-color: #f9f9f9; min-height: 150px;">
+                                    <!-- Email body content will go here -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
                 @include('massmailer.components.footer')
             </div>
         </div>
