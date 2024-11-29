@@ -129,5 +129,18 @@
         #leads-table tbody tr:hover {
             background-color: #b8e1fd; 
         }
+
+.fixed-div33 {
+      position: fixed; /* Makes the div stay in place */
+      bottom: 0;       /* Align to the bottom */
+      right: 0;        /* Align to the right */
+      width: 300px;    /* Set a width for the div */
+      height: 80px;   /* Set a height for the div */
+      background-color: black; /* Set the background color to black */
+      color: white;    /* Set the text color to white for contrast */
+      display: none;   /* Center content horizontally and vertically */
+      justify-content: center;
+      align-items: center;
+    }
     </style>
 </head>

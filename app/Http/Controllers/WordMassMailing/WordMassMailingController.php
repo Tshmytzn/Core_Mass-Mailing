@@ -12,6 +12,7 @@ use App\Mail\WordMassMailing;
 use App\Models\LeadRecords;
 use App\Models\EmailTemplate;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class WordMassMailingController extends Controller
 {
     public function sendMassEmail(Request $request)
@@ -63,5 +64,10 @@ class WordMassMailingController extends Controller
         }
 
         return response()->json(['message' => 'Email Successfully Queued', 'status' => 'success']);
+    }
+
+    public function checkQueue(){
+        $count = DB::table('jobs')->where('queue', 'default')->count();
+        return response()->json(['count' => $count]);
     }
 }

@@ -8,7 +8,6 @@
             dataBody.innerHTML = ``;
 
             response.data.forEach((element, index) => {
-                console.log(element)
                 // Extract and format the date
                 const dateObj = new Date(element.smh_date);
                 const formattedDate = dateObj.toISOString().split('T')[0]; // Format date as YYYY-MM-DD

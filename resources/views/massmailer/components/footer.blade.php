@@ -21,3 +21,7 @@
           </div>
         </div>
       </footer>
+
+<div class="fixed-div33" id="checking-queue">
+
+</div>

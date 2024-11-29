@@ -113,6 +113,7 @@ $('#send-email-btn').off('click').on('click', function () {
             // Reload data and history
             GetLeadsData('');
             GetSentHistory();
+            GetQueue();
         },
         error: function (xhr, status, error) {
             document.getElementById('loadingPage').style.display = 'none';
@@ -154,7 +155,66 @@ function GetSentHistory(){
 }
 
 
+function GetQueue(){
+    $.ajax({
+        url: '{{ route('checkQueue') }}', // Replace with your endpoint route
+        type: 'GET', // HTTP method (GET)
+        success: function(response) {
+            const parentDiv = document.getElementById('checking-queue');
+            while (parentDiv.firstChild) {
+                parentDiv.removeChild(parentDiv.firstChild);
+            }
+            if(response.count > 0){
+            parentDiv.style.display='flex';
+           
+            const container = document.createElement('div');
+            container.className = 'container container-slim py-4';
+
+            // Create the text-center div
+            const textCenter = document.createElement('div');
+            textCenter.className = 'text-center';
+
+            // Create the text-secondary div
+            const textSecondary = document.createElement('div');
+            textSecondary.className = 'text-secondary mb-3';
+            textSecondary.textContent = 'Email is in queue: (' + response.count + ') emails';
+
+            // Create the progress div
+            const progress = document.createElement('div');
+            progress.className = 'progress progress-sm';
+
+            // Create the progress-bar div
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar progress-bar-indeterminate';
+
+            // Append the progress-bar to the progress
+            progress.appendChild(progressBar);
+
+            // Append text-secondary and progress to text-center
+            textCenter.appendChild(textSecondary);
+            textCenter.appendChild(progress);
+
+            // Append text-center to the main container
+            container.appendChild(textCenter);
+
+            // Append the entire structure to the parent div
+            parentDiv.appendChild(container);
+            }else{
+            parentDiv.style.display='none';
+            }
+            
+        },
+        error: function(xhr, status, error) {
+            document.getElementById('loadingPage').style.display = 'none';  // Hide loading page on error
+            console.error('Request failed:', error); // Log error for debugging
+            alertify.error('Failed to fetch data');  // Display error message using alertify
+        }
+    });
+}
+
 $(document).ready(function() {
-    GetSentHistory()
+    GetSentHistory();
+     GetQueue();
+    setInterval(GetQueue, 20000);
      });
 </script>

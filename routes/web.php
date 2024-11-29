@@ -103,7 +103,7 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
 
     //WordMassMailing
     Route::post('/sendMassEmail', [WordMassMailingController::class, 'sendMassEmail'])->name('sendMassEmail');
-
+    Route::get('/getQueue', [WordMassMailingController::class, 'checkQueue'])->name('checkQueue');
     // Analytics
     Route::get('/getLeadsoverview', [AnalyticsController::class, 'getleadsoverview'])->name('getleadsoverview');
     Route::get('/getemailsoverview', [AnalyticsController::class, 'getemailsoverview'])->name('getemailsoverview');
