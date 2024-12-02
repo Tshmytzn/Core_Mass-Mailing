@@ -178,6 +178,44 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading-4">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-5"
+                                            aria-expanded="false">
+                                            Core Services
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-5" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordion-example">
+                                        <div class="accordion-body pt-0">
+
+                                            <form action="" id="all-form" method="post">
+                                                <div class="mb-3 row">
+                                                    <div class="col-sm-12">
+                                                        <input type="text" name="type" value="Startup MVP"
+                                                            hidden>
+                                                        <label for="template-subject" class="form-label">Template
+                                                            Subject</label>
+                                                        <input type="text" name="subject"
+                                                            id="all-template-subject" class="form-control"
+                                                            placeholder="Enter template subject">
+
+                                                        <label for="all-summernote" class="form-label mt-3">Template
+                                                            Body</label>
+                                                        <textarea name="body" id="mvp-summernote" class="form-control" cols="30" rows="10"
+                                                            placeholder="Enter template body"></textarea>
+
+                                                        <button type="button" class="btn btn-primary mt-3 w-100"
+                                                            onclick="SavaTemplate('all-form')">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div> --}}
+
                             </div>
                         </div>
                     </div>
