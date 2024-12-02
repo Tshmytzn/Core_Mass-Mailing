@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LeadsManagement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LeadRecords;
+use App\Models\MailRecordModel;
 use Carbon\Carbon;
 class LeadsController extends Controller
 {
@@ -113,6 +114,39 @@ class LeadsController extends Controller
             'message' => 'Lead record inserted successfully!',
             'data' => $leadRecord,
         ], 201);
+    }
+
+    public function DeleteLead(Request $request){
+        $data = LeadRecords::where('lead_id',$request->id)->first();
+        
+        $check = MailRecordModel::where('lead_id',$data->lead_id)->first();
+        if($check){
+            return response()->json(['message' => 'Cant delete lead record as it is linked with mail record','success'=> false]);
+        }
+        $data->delete();
+        return response()->json(['message' =>'Lead successfully deleted', 'success' => true]);
+    }
+
+    public function DeleteLeads(Request $request)
+    {
+        // Validate the incoming request to ensure 'ids' is an array
+        $request->validate([
+            'ids' => 'required|array',
+        ]);
+
+            foreach ($request->ids as $id) {
+                // Find the lead
+                $lead = LeadRecords::where('lead_id',$id)->first();
+                $check = MailRecordModel::where('lead_id', $lead->lead_id)->first();
+                if (!$check) {
+                    $lead->delete();
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Leads deleted successfully.',
+            ]);
     }
 
 }

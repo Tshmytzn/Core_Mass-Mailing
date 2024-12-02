@@ -77,6 +77,7 @@
                                                                 <th>Email</th>
                                                                 <th>Full Name</th>
                                                                 <th>Service Offered</th>
+                                                                <th>Email Sent</th>
                                                                 <th class="w-1">Action</th>
                                                             </tr>
                                                         </thead>
@@ -84,6 +85,7 @@
 
                                                         </tbody>
                                                     </table>
+                                                    <button id="delete-selected" class="btn btn-danger">Delete Selected</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -84,7 +84,9 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     Route::post('/InsertLeadsData', [LeadsController::class, 'InsertLeadsData'])->name('InsertLeadsData');
     Route::get('/GetLeadsData', [LeadsController::class, 'GetLeadsData'])->name('GetLeadsData');
     Route::post('/GetLeadsDataByService', [LeadsController::class, 'GetLeadsDataByService'])->name('GetLeadsDataByService');
-    Route::post('/delete-lead', [LeadsController::class, 'deleteLead'])->name('deletelead');
+    Route::post('/DeleteLead', [LeadsController::class, 'DeleteLead'])->name('DeleteLead');
+    Route::post('/DeleteLeads', [LeadsController::class, 'DeleteLeads'])->name('DeleteLeads');
+
 
     Route::post('/GetLeadsDataWordByService', [LeadsController::class, 'GetLeadsDataWordByService'])->name('GetLeadsDataWordByService');
     Route::post('/GetLeadsDataWordByServiceFollowUp', [LeadsController::class, 'GetLeadsDataWordByServiceFollowUp'])->name('GetLeadsDataWordByServiceFollowUp');
