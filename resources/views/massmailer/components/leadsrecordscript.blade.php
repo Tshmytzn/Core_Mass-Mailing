@@ -122,7 +122,13 @@
                         }
                     }, // Full Name
                     { data: 'lead_type' }, // Type
-                    { data: 'lead_status' }, // Status
+                    {
+                        data: 'lead_status',
+                        render: function(data, type, row) {
+                            // Check if 'data' is null or empty and return 0 if so
+                            return (data === null || data === '') ? '0' : data;
+                        }
+                    },
                     {
                         data: 'action',
                         render: function(data, type, row) {
