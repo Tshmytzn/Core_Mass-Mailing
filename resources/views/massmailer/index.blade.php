@@ -2,6 +2,19 @@
 <html lang="en">
 @include('massmailer.components.head')
 
+<style>
+
+.custom-select-style option:hover {
+    background-color: #d6c8e5; 
+    color: #fff;
+}
+
+.custom-select-style option:checked {
+    background-color: #6f42c1; 
+    color: #fff;
+}
+</style>
+
 <body>
     <script src="{{ asset('./dist/js/demo-theme.min.js?1692870487') }}"></script>
     <div class="page">
@@ -33,7 +46,36 @@
                 <div class="container-xl">
                     <div class="row row-cards">
 
-                        <div class="col-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="text-center"> Email Outreach Summary </h2>
+                                    <div class="d-flex justify-content-between align-items-center me-2">
+                                        <div></div> <!-- Empty div to keep the title centered -->
+                                        <div>
+                                            <select class="form-select form-select-sm mb-5 custom-select-style" style="width: 150px; background-color: #bfdefd; border: 1px solid #ced4da; border-radius: 5px; padding: 5px; font-size: 14px;">
+                                                <option selected>Filter by Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="chart-completion-tasks-10"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h2 class="text-center"> Lead Breakdown by Employee </h2>
@@ -41,17 +83,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h2 class="text-center"> Email Outreach Summary </h2>
-                                    <div id="chart-completion-tasks-10"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
 
                         {{-- <div class="col-6">
                             <div class="card">
