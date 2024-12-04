@@ -54,6 +54,7 @@ class LeadsController extends Controller
         $data = LeadRecords::where('acc_id', session('acc_id'))
             ->where('lead_type', $request->type)
             ->where('lead_status',null)
+            ->where('lead_dnc','false')
             ->take(10) // Limit to 10 results
             ->get();
 
@@ -64,6 +65,7 @@ class LeadsController extends Controller
         $currentDate = Carbon::now('Asia/Hong_Kong')->toDateString();
         $data = LeadRecords::where('acc_id', session('acc_id'))
         ->where('lead_type', $request->type)
+        ->where('lead_dnc', 'false')
         ->where('lead_send_date','<=',$currentDate)
             ->where('lead_status', '1')
             ->take(10) // Limit to 10 results
@@ -77,6 +79,7 @@ class LeadsController extends Controller
         $currentDate = Carbon::now('Asia/Hong_Kong')->toDateString();
         $data = LeadRecords::where('acc_id', session('acc_id'))
         ->where('lead_type', $request->type)
+        ->where('lead_dnc', 'false')
         ->where('lead_send_date', '<=', $currentDate)
         ->where('lead_status', $request->send_count)
         ->take(10) // Limit to 10 results
