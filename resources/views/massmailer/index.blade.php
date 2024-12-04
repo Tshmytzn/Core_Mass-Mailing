@@ -2,6 +2,23 @@
 <html lang="en">
 @include('massmailer.components.head')
 
+<style>
+
+.custom-select-style {
+    cursor: pointer;
+}
+
+.custom-select-style option:hover {
+    background-color: #d6c8e5; 
+    color: #fff;
+}
+
+.custom-select-style option:checked {
+    background-color: #6f42c1; 
+    color: #fff;
+}
+</style>
+
 <body>
     <script src="{{ asset('./dist/js/demo-theme.min.js?1692870487') }}"></script>
     <div class="page">
@@ -33,7 +50,36 @@
                 <div class="container-xl">
                     <div class="row row-cards">
 
-                        <div class="col-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="text-center"> Email Outreach Summary </h2>
+                                    <div class="d-flex justify-content-between align-items-center me-2">
+                                        <div></div> <!-- Empty div to keep the title centered -->
+                                        <div>
+                                            <select class="form-select form-select-sm mb-5 custom-select-style" style="width: 150px; background-color: #bfdefd; border: 1px solid #ced4da; border-radius: 5px; padding: 5px; font-size: 14px;">
+                                                <option selected>Filter by Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="chart-completion-tasks-10"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h2 class="text-center"> Lead Breakdown by Employee </h2>
@@ -41,17 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h2 class="text-center"> Email Outreach Summary </h2>
-                                    <div id="chart-completion-tasks-10"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
 
                         {{-- <div class="col-6">
                             <div class="card">
@@ -72,92 +107,101 @@
 
     <script>
         // Email Outreach Summary
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.querySelector('.custom-select-style');
 
-            fetch('/getemailsoverview')
-                .then(response => response.json())
-                .then(data => {
+    function renderChart(filteredData, labels) {
+        const colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
 
-                    const formattedLabels = data.labels.map(dateString => {
+        if (window.ApexCharts) {
+            const chartElement = document.getElementById('chart-completion-tasks-10');
+
+            if (chartElement.chartInstance) {
+                chartElement.chartInstance.destroy();
+            }
+
+            chartElement.chartInstance = new ApexCharts(chartElement, {
+                chart: {
+                    type: "area",
+                    fontFamily: 'inherit',
+                    height: 380,
+                    parentHeightOffset: 0,
+                    toolbar: { show: false },
+                    animations: { enabled: true },
+                },
+                dataLabels: { enabled: false },
+                fill: { opacity: .16, type: 'solid' },
+                stroke: { width: 2, lineCap: "round", curve: "smooth" },
+                series: filteredData.series,
+                tooltip: { theme: 'dark' },
+                grid: {
+                    padding: { top: -20, right: 0, left: -4, bottom: -4 },
+                    strokeDashArray: 4,
+                },
+                xaxis: {
+                    labels: {
+                        padding: 0,
+                        formatter: (value) => value, // Already formatted
+                    },
+                    tooltip: { enabled: false },
+                    axisBorder: { show: false },
+                    type: 'category',
+                },
+                yaxis: { labels: { padding: 4 } },
+                labels: labels,
+                colors: colors.slice(0, filteredData.series.length),
+                legend: { show: true },
+            });
+
+            chartElement.chartInstance.render();
+        }
+    }
+
+    fetch('/getemailsoverview')
+        .then(response => response.json())
+        .then(data => {
+            // Format labels
+            const formattedLabels = data.labels.map(dateString => {
+                const date = new Date(dateString);
+                const options = { day: 'numeric', month: 'short' }; // Example: Nov 1
+                return new Intl.DateTimeFormat('en-PH', options).format(date);
+            });
+
+            const allSeries = data.series;
+
+            renderChart({ series: allSeries }, formattedLabels);
+
+            dropdown.addEventListener('change', function () {
+                const selectedMonth = parseInt(this.value, 10);
+                if (selectedMonth) {
+                    const filteredLabels = data.labels.filter(dateString => {
                         const date = new Date(dateString);
-                        const options = {
-                            day: '2-digit',
-                            month: 'short',
-                        };
-                        const formatted = new Intl.DateTimeFormat('en-PH', options).format(date);
-                        return formatted.toUpperCase();
+                        return date.getMonth() + 1 === selectedMonth;
+                    }).map(dateString => {
+                        const date = new Date(dateString);
+                        const options = { day: 'numeric', month: 'short' };
+                        return new Intl.DateTimeFormat('en-PH', options).format(date);
                     });
 
-                    const colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+                    const filteredSeries = allSeries.map(userSeries => ({
+                        name: userSeries.name,
+                        data: filteredLabels.map(label => {
+                            const index = formattedLabels.indexOf(label);
+                            return userSeries.data[index] ?? 0;
+                        }),
+                    }));
 
-                    if (window.ApexCharts) {
-                        new ApexCharts(document.getElementById('chart-completion-tasks-10'), {
-                            chart: {
-                                type: "area",
-                                fontFamily: 'inherit',
-                                height: 380,
-                                parentHeightOffset: 0,
-                                toolbar: {
-                                    show: false,
-                                },
-                                animations: {
-                                    enabled: true
-                                },
-                            },
-                            dataLabels: {
-                                enabled: false,
-                            },
-                            fill: {
-                                opacity: .16,
-                                type: 'solid'
-                            },
-                            stroke: {
-                                width: 2,
-                                lineCap: "round",
-                                curve: "smooth",
-                            },
-                            series: data.series,
-                            tooltip: {
-                                theme: 'dark'
-                            },
-                            grid: {
-                                padding: {
-                                    top: -20,
-                                    right: 0,
-                                    left: -4,
-                                    bottom: -4
-                                },
-                                strokeDashArray: 4,
-                            },
-                            xaxis: {
-                                labels: {
-                                    padding: 0,
-                                },
-                                tooltip: {
-                                    enabled: false
-                                },
-                                axisBorder: {
-                                    show: false,
-                                },
-                                type: 'category',
-                            },
-                            yaxis: {
-                                labels: {
-                                    padding: 4
-                                },
-                            },
-                            labels: formattedLabels,
-                            colors: colors.slice(0, data.series.length),
-                            legend: {
-                                show: true,
-                            },
-                        }).render();
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching chart data:', error);
-                });
+                    renderChart({ series: filteredSeries }, filteredLabels);
+                } else {
+                    renderChart({ series: allSeries }, formattedLabels);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching chart data:', error);
         });
+});
+
 
         // Leads Overview
         document.addEventListener("DOMContentLoaded", function() {
