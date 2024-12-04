@@ -45,7 +45,9 @@ class LeadsController extends Controller
     }
 
     public function GetLeadsData(){
-        $data = LeadRecords::where('acc_id',session('acc_id'))->get();
+        $data = LeadRecords::where('acc_id', session('acc_id'))
+        ->where('lead_dnc', 'false')
+        ->get();
         return response()->json(['data' => $data]);
     }
 
@@ -150,6 +152,24 @@ class LeadsController extends Controller
                 'success' => true,
                 'message' => 'Leads deleted successfully.',
             ]);
+    }
+
+    public function updateLeadDNC(Request $request)
+    {
+        $validated = $request->validate([
+            'lead_id' => 'required|string|exists:leads_record,lead_id',
+            'lead_dnc' => 'required|string',
+        ]);
+
+        try {
+            $lead = LeadRecords::findOrFail($validated['lead_id']);
+            $lead->lead_dnc = $validated['lead_dnc'];
+            $lead->save();
+
+            return response()->json(['success' => true, 'message' => 'Lead updated successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to update lead status.']);
+        }
     }
 
 }

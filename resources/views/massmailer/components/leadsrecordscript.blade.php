@@ -177,6 +177,62 @@
                     }
                 });
 
+                // Add an event listener for the "Do Not Call" button
+                $(document).on('click', '.do-not-call-btn', function() {
+                    const leadId = $(this).data('id');
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "Do you want to mark this lead as Do Not Call?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, mark as DNC!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '/updateLeadDNC', 
+                                method: 'POST',
+                                data: {
+                                    lead_id: leadId,
+                                    lead_dnc: true,
+                                    _token: $('meta[name="csrf-token"]').attr(
+                                        'content')
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Success',
+                                            text: 'Lead has been marked as Do Not Call.',
+                                        }).then(function() {
+                                            GetLeadsData();
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: response.message ||
+                                                'Failed to update the lead status.',
+                                        });
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'An unexpected error occurred. Please try again.',
+                                    });
+                                }
+                            });
+                        }
+                    });
+                });
+
+
+
+
                 // Add an event listener for the delete all button
                 $('#delete-selected').on('click', function() {
                     let selectedIds = [];
@@ -205,7 +261,7 @@
                                 success: function(response) {
                                     alertify.success(
                                         'Selected leads deleted successfully'
-                                        );
+                                    );
                                     GetLeadsData(); // Refresh the DataTable
                                 },
                                 error: function(xhr, status, error) {
