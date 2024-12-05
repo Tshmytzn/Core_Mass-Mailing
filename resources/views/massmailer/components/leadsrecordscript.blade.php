@@ -96,43 +96,49 @@
     });
 
     function GetLeadsData() {
-    $.ajax({
-        url: '{{ route('GetLeadsData') }}', // Replace with your endpoint route
-        type: 'GET', // HTTP method (GET)
-        success: function(response) {
-            // Initialize DataTable with the fetched data
-            $('#leads-table').DataTable({
-                data: response.data,
-                destroy: true,
-                columns: [
-                    {
-                        data: null,
-                        orderable: false,
-                        className: 'text-center',
-                        render: function(data, type, row) {
-                            return `<input type="checkbox" class="row-checkbox" data-id="${row.lead_id}">`;
-                        }
-                    }, // Checkbox column
-                    { data: 'lead_company' }, // Company
-                    { data: 'lead_email' }, // Email
-                    {
-                        data: null,
-                        render: function(data, type, row) {
-                            return `${row.lead_firstname} ${row.lead_lastname}`;
-                        }
-                    }, // Full Name
-                    { data: 'lead_type' }, // Type
-                    {
-                        data: 'lead_status',
-                        render: function(data, type, row) {
-                            // Check if 'data' is null or empty and return 0 if so
-                            return (data === null || data === '') ? '0' : data;
-                        }
-                    },
-                    {
-                        data: 'action',
-                        render: function(data, type, row) {
-                            return `<button class="btn btn-sm btn-ghost-danger btn-md delete-btn text-center" data-id="${row.lead_id}">
+        $.ajax({
+            url: '{{ route('GetLeadsData') }}', // Replace with your endpoint route
+            type: 'GET', // HTTP method (GET)
+            success: function(response) {
+                // Initialize DataTable with the fetched data
+                $('#leads-table').DataTable({
+                    data: response.data,
+                    destroy: true,
+                    columns: [{
+                            data: null,
+                            orderable: false,
+                            className: 'text-center',
+                            render: function(data, type, row) {
+                                return `<input type="checkbox" class="row-checkbox" data-id="${row.lead_id}">`;
+                            }
+                        }, // Checkbox column
+                        {
+                            data: 'lead_company'
+                        }, // Company
+                        {
+                            data: 'lead_email'
+                        }, // Email
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return `${row.lead_firstname} ${row.lead_lastname}`;
+                            }
+                        }, // Full Name
+                        {
+                            data: 'lead_type'
+                        }, // Type
+                        {
+                            data: 'lead_status',
+                            render: function(data, type, row) {
+                                // Check if 'data' is null or empty and return 0 if so
+                                return (data === null || data === '') ? '0' : data;
+                            }
+                        },
+                        {
+                            data: 'action',
+                            render: function(data, type, row) {
+                                return `
+                                    <button class="btn btn-sm btn-ghost-danger btn-md delete-btn text-center" data-id="${row.lead_id}">
                                         <svg class='m-1' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                             <path d="M4 7l16 0"/>
@@ -141,76 +147,145 @@
                                             <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/>
                                             <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>
                                         </svg>
+                                    </button>
+                                    <button class="btn btn-sm btn-ghost-warning btn-md do-not-call-btn text-center" data-id="${row.lead_id}">
+                                        <svg class='m-1' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-phone-off">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M3 3l18 18"/>
+                                            <path d="M9 5a11 11 0 0 0 -6 6m14.4 2.4a11 11 0 0 0 -4.4 -8.4"/>
+                                            <path d="M4 15a11 11 0 0 0 8 4l3 -3"/>
+                                            <path d="M10 10l-3 3"/>
+                                        </svg>
                                     </button>`;
-                        }
-                    }, // Actions
-                ],
-                initComplete: function() {
-                    // Add a Select All checkbox to the header
-                    $('#leads-table thead tr').prepend(`
+                            }
+
+                        }, // Actions
+                    ],
+                    initComplete: function() {
+                        // Add a Select All checkbox to the header
+                        $('#leads-table thead tr').prepend(`
                         <th class="text-center">
                             <input type="checkbox" id="select-all">
                         </th>
                     `);
 
-                    // Add a Select All checkbox to the footer
-                    $('#leads-table thead input#select-all').on('click', function() {
-                        const isChecked = $(this).prop('checked');
-                        $('.row-checkbox').prop('checked', isChecked);
-                    });
-                }
-            });
-
-            // Add an event listener for the delete all button
-            $('#delete-selected').on('click', function() {
-                let selectedIds = [];
-                $('.row-checkbox:checked').each(function() {
-                    selectedIds.push($(this).data('id'));
+                        // Add a Select All checkbox to the footer
+                        $('#leads-table thead input#select-all').on('click', function() {
+                            const isChecked = $(this).prop('checked');
+                            $('.row-checkbox').prop('checked', isChecked);
+                        });
+                    }
                 });
 
-                if (selectedIds.length > 0) {
+                // Add an event listener for the "Do Not Call" button
+                $(document).on('click', '.do-not-call-btn', function() {
+                    const leadId = $(this).data('id');
 
                     Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                        title: "Are you sure?",
+                        text: "Do you want to mark this lead as Do Not Call?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, mark as DNC!"
                     }).then((result) => {
-                    $.ajax({
-                            url: '{{ route('DeleteLeads') }}', // Replace with your delete endpoint
-                            type: 'POST',
-                            data: {
-                                ids: selectedIds,
-                                _token: '{{ csrf_token() }}' // Include CSRF token if necessary
-                            },
-                            success: function(response) {
-                                alertify.success('Selected leads deleted successfully');
-                                GetLeadsData(); // Refresh the DataTable
-                            },
-                            error: function(xhr, status, error) {
-                                alertify.error('Failed to delete selected leads');
-                            }
-                        });
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '/updateLeadDNC', 
+                                method: 'POST',
+                                data: {
+                                    lead_id: leadId,
+                                    lead_dnc: true,
+                                    _token: $('meta[name="csrf-token"]').attr(
+                                        'content')
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Success',
+                                            text: 'Lead has been marked as Do Not Call.',
+                                        }).then(function() {
+                                            GetLeadsData();
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: response.message ||
+                                                'Failed to update the lead status.',
+                                        });
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'An unexpected error occurred. Please try again.',
+                                    });
+                                }
+                            });
+                        }
+                    });
+                });
+
+
+
+
+                // Add an event listener for the delete all button
+                $('#delete-selected').on('click', function() {
+                    let selectedIds = [];
+                    $('.row-checkbox:checked').each(function() {
+                        selectedIds.push($(this).data('id'));
                     });
 
-                    // if (confirm('Are you sure you want to delete the selected leads?')) {
-                        
-                    // }
-                } else {
-                    alertify.warning('No rows selected');
-                }
-            });
-        },
-        error: function(xhr, status, error) {
-            document.getElementById('loadingPage').style.display = 'none'; 
-            console.error('Request failed:', error); 
-            alertify.error('Failed to fetch data'); 
-        }
-    });
-}
+                    if (selectedIds.length > 0) {
+
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!"
+                        }).then((result) => {
+                            $.ajax({
+                                url: '{{ route('DeleteLeads') }}', // Replace with your delete endpoint
+                                type: 'POST',
+                                data: {
+                                    ids: selectedIds,
+                                    _token: '{{ csrf_token() }}' // Include CSRF token if necessary
+                                },
+                                success: function(response) {
+                                    alertify.success(
+                                        'Selected leads deleted successfully'
+                                    );
+                                    GetLeadsData(); // Refresh the DataTable
+                                },
+                                error: function(xhr, status, error) {
+                                    alertify.error(
+                                        'Failed to delete selected leads');
+                                }
+                            });
+                        });
+
+                        // if (confirm('Are you sure you want to delete the selected leads?')) {
+
+                        // }
+                    } else {
+                        alertify.warning('No rows selected');
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                document.getElementById('loadingPage').style.display = 'none';
+                console.error('Request failed:', error);
+                alertify.error('Failed to fetch data');
+            }
+        });
+    }
 
 
     function ManualinputLeadsData() {
@@ -286,19 +361,19 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        if(response.success){
+                        if (response.success) {
                             Swal.fire(
-                            'Deleted!',
-                            'The lead has been deleted.',
-                            'success'
-                        );
-                        GetLeadsData();
-                        }else{
+                                'Deleted!',
+                                'The lead has been deleted.',
+                                'success'
+                            );
+                            GetLeadsData();
+                        } else {
                             Swal.fire(
-                            'Cant Deleted',
-                            response.message,
-                            'error'
-                        );
+                                'Cant Deleted',
+                                response.message,
+                                'error'
+                            );
                         }
                     },
                     error: function(xhr, status, error) {
