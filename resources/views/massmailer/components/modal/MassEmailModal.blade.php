@@ -36,7 +36,7 @@
                   <select name="service" id="service" class="form-control" onchange="GetLeadsData(this.value)">
                     <option value="">Select Service</option>
                     <option value="Software Development">Software Development</option>
-                    <option value="IT Manage Services">IT Manage Services</option>
+                    <option value="IT Managed Services">IT Managed Services</option>
                     <option value="BPO">BPO</option>
                     <option value="Startup MVP">Startup MVP</option>
                     <option value="Remote Employee Management">Remote Employee Management</option>
@@ -53,7 +53,7 @@
                   <select name="service" id="service2" class="form-control" onchange="GetLeadsDataFollowUp(this.value)">
                     <option value="">Select Service</option>
                     <option value="Software Development">Software Development</option>
-                    <option value="IT Manage Services">IT Manage Services</option>
+                    <option value="IT Managed Services">IT Managed Services</option>
                     <option value="BPO">BPO</option>
                     <option value="Startup MVP">Startup MVP</option>
                     <option value="Remote Employee Management">Remote Employee Management</option>

@@ -15,7 +15,7 @@ class EmailTemplateController extends Controller
             'type' => 'required|string',
         ]);
 
-        $check = EmailTemplate::where('temp_type', $validated['type'])->where('temp_followup','false')->first();
+        $check = EmailTemplate::where('acc_id',session('acc_id'))->where('temp_type', $validated['type'])->where('temp_followup','false')->first();
         if($check){
             $check->delete();
         }
@@ -48,7 +48,7 @@ class EmailTemplateController extends Controller
             'type' => 'required|string',
         ]);
 
-        $check = EmailTemplate::where('temp_type', $validated['type'])->where('temp_followup', 'true')->first();
+        $check = EmailTemplate::where('acc_id', session('acc_id'))->where('temp_type', $validated['type'])->where('temp_followup', 'true')->first();
         if ($check) {
             $check->delete();
         }

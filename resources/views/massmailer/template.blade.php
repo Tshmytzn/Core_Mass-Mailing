@@ -85,7 +85,7 @@
                                             <form action="" id="it-form" method="post">
                                                 <div class="mb-3 row">
                                                     <div class="col-sm-12">
-                                                        <input type="text" name="type" value="IT Manage Services"
+                                                        <input type="text" name="type" value="IT Managed Services"
                                                             hidden>
                                                         <label for="template-subject" class="form-label">Template
                                                             Subject</label>
@@ -277,7 +277,7 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-sm-12">
                                                         <input type="text" name="type"
-                                                            value="IT Manage Services" hidden>
+                                                            value="IT Managed Services" hidden>
                                                         <label for="template-subject" class="form-label">Template
                                                             Subject</label>
                                                         <input type="text" name="subject"
