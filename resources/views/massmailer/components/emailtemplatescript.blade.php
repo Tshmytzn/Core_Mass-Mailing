@@ -119,7 +119,7 @@ function GetTemplate() {
                     subject: 'soft-template-subject',
                     editor: '#soft-summernote',
                 },
-                'IT Manage Services': {
+                'IT Managed Services': {
                     subject: 'it-template-subject',
                     editor: '#it-summernote',
                 },
@@ -170,7 +170,7 @@ function GetFollowupTemplate() {
                     subject: 'softdev-template-subject',
                     editor: '#softdev-summernote',
                 },
-                'IT Manage Services': {
+                'IT Managed Services': {
                     subject: 'managed-template-subject',
                     editor: '#managed-summernote',
                 },
