@@ -20,13 +20,7 @@ function GetLeadsData(type) {
                 data: response.data,
                 destroy: true,
                 columns: [
-                    {
-                        data: null,
-                        render: function (data, type, row) {
-                            const isChecked = checkedIds.includes(row.lead_id); // Check if ID is in `checkedIds`
-                            return `<input type="checkbox" class="lead-checkbox" data-id="${row.lead_id}" ${isChecked ? 'checked' : ''} />`;
-                        }
-                    },
+                    
                     { data: 'lead_company' }, // Company Name
                     { data: 'lead_email' },   // Email
                     {
@@ -36,6 +30,13 @@ function GetLeadsData(type) {
                         }
                     },
                     { data: 'lead_type' },    // Lead Type
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            const isChecked = checkedIds.includes(row.lead_id); // Check if ID is in `checkedIds`
+                            return `<input type="checkbox" class="lead-checkbox" data-id="${row.lead_id}" ${isChecked ? 'checked' : ''} />`;
+                        }
+                    },
                 ],
             });
 

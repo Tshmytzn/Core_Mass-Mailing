@@ -15,11 +15,11 @@
                     <table class="table table-vcenter card-table" id="leads-table">
                       <thead>
                         <tr>
-                          <th><input type="checkbox" id="select-all-checkbox" /></th>  
                           <th>Company</th>
                           <th>Email</th>
                           <th>Full Name</th>
                           <th>Service</th>
+                          <th><input type="checkbox" id="select-all-checkbox" /></th>  
                         </tr>
                       </thead>
                       <tbody>
