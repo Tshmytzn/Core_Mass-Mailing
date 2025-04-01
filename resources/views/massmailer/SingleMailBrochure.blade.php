@@ -124,7 +124,7 @@
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                 Remote Staff
                                                             </label>
-                                                            <img src="{{ asset('brochure_img/staff.png') }}"
+                                                            <img src="{{ asset('brochure_img/staff.jpeg') }}"
                                                                 class="rounded mx-auto d-block" alt="...">
                                                         </div>
                                                     </div>

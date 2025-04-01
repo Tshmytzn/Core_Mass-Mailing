@@ -10,7 +10,7 @@
 
 <body>
     <div>
-        <img src="{{ asset('brochure_img/staff.png') }}" alt="Staff Image" style="width: 100%; height: auto;">
+        <img src="{{ asset('brochure_img/staff.jpeg') }}" alt="Staff Image" style="width: 100%; height: auto;">
     </div>
     <div>
         {!! $signature !!} <!-- This will render the signature HTML -->
