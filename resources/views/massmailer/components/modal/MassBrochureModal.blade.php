@@ -39,6 +39,8 @@
                       <option value="BPO">BPO</option>
                       <option value="Startup MVP">Startup MVP</option>
                       <option value="Remote Employee Management">Remote Employee Management</option>
+                      <option value="Offshore Remote Team">Offshore Remote Team
+                      </option>
                     </select>
                   </div>
                   <div class="col-12">

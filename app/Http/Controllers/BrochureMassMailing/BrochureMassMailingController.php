@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SingleMailerWithHtml;
 use App\Mail\SingleMailerWithHtmlv2;
 use App\Mail\SingleMailerWithHtmlv3;
+use App\Mail\SingleMailerWithHtmlv4;
 use App\Models\AccountModel;
 use App\Models\SignatureModel;
 use App\Models\MailRecordModel;
@@ -58,6 +59,12 @@ class BrochureMassMailingController extends Controller
                 $subject = 'Cost savings with your customer service operations';
                 Mail::to($mailto->lead_email)->queue(
                     new SingleMailerWithHtmlv2($subject, $fromEmail, $fromName, $cleanedSignature)
+                );
+            }
+            elseif ($service == 'Offshore Remote Team') {
+                $subject = 'Let’s Build Your High-Performance Offshore Support Team';
+                Mail::to($mailto->lead_email)->queue(
+                    new SingleMailerWithHtmlv4($subject, $fromEmail, $fromName, $cleanedSignature)
                 );
             } else {
                 $subject = 'Cost savings with your IT support';

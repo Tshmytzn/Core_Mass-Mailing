@@ -55,6 +55,10 @@ Route::middleware([AccountAuthMiddleware::class])->group(function () {
     })->name('mailTemplate');
 
 
+    Route::get('/mailing/Remote_staff', action: function () {
+        return view('MailWithHtml.Remote_staff');
+    })->name('mailTemplate1');
+
     // leads View
     Route::get('/leads/', function () {
         return view('massmailer.LeadsRecord');

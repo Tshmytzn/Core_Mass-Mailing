@@ -8,6 +8,7 @@ use App\Mail\SingleMailer;
 use App\Mail\SingleMailerWithHtml;
 use App\Mail\SingleMailerWithHtmlv2;
 use App\Mail\SingleMailerWithHtmlv3;
+use App\Mail\SingleMailerWithHtmlv4;
 use App\Models\AccountModel;
 use App\Models\SignatureModel;
 use App\Models\SingleMailHistory;
@@ -78,9 +79,13 @@ class SendSingleMail extends Controller
             Mail::to($request->mailto)->queue(
                 new SingleMailerWithHtmlv2($subject, $fromEmail, $fromName, $cleanedSignature)
             );
-        } else {
+        } elseif ($request->flexRadioDefault == '3') {
             Mail::to($request->mailto)->queue(
                 new SingleMailerWithHtmlv3($subject, $fromEmail, $fromName, $cleanedSignature)
+            );
+        } else {
+            Mail::to($request->mailto)->queue(
+                new SingleMailerWithHtmlv4($subject, $fromEmail, $fromName, $cleanedSignature)
             );
         }
 
